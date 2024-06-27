@@ -3,63 +3,94 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evenement;
+use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreEvenementRequest;
 
 class EvenementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $evenements = Evenement::all();
+        return view('evenements.index', compact('evenements'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $associations = Association::all();
+        return view('evenements.create', compact('associations'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreEvenementRequest $request)
     {
-        //
+        $photo = null;
+    
+        // Vérifier si un fichier photo est uploadé
+        if ($request->hasFile('photo')) {
+            // Stocker la photo dans le répertoire 'public/photos'
+            $chemin_photo = $request->file('photo')->store('public/photos');
+            
+            // Vérifier si le chemin de la photo est bien généré
+            if (!$chemin_photo) {
+                return redirect()->back()->with('error', 'Erreur lors du téléchargement de la photo.');
+            }
+    
+            // Récupérer le nom du fichier de la photo
+            $photo = basename($chemin_photo);
+        }
+    
+        // Préparer les données pour l'enregistrement
+        $data = $request->all();
+        $data['photo'] = $photo;
+    
+        // Enregistrer l'événement dans la base de données
+        Evenement::create($data);
+    
+        return redirect()->route('evenements.index')->with('success', 'Événement créé avec succès.');
     }
+    
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Evenement $evenement)
     {
-        //
+        $evenement->load('association');
+        return view('evenements.show', compact('evenement'));
     }
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Evenement $evenement)
-    {
-        //
+{
+    $associations = Association::all();
+    return view('evenements.edit', compact('evenement', 'associations'));
+}
+
+
+public function update(StoreEvenementRequest $request, Evenement $evenement)
+{
+    $data = $request->all();
+    if ($request->hasFile('photo')) {
+        // Supprimer l'ancienne photo
+        if ($evenement->photo) {
+            Storage::delete('public/photos/' . $evenement->photo);
+        }
+
+        // Stocker la nouvelle photo
+        $file = $request->file('photo');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $path = $file->storeAs('photos', $filename, 'public');
+        $data['photo'] = basename($path);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Evenement $evenement)
-    {
-        //
-    }
+    $evenement->update($data);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    return redirect()->route('evenements.index')->with('success', 'Événement mis à jour avec succès.');
+}
+
+
     public function destroy(Evenement $evenement)
     {
-        //
+        $evenement->delete();
+        return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès.');
     }
 }

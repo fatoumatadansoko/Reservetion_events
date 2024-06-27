@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EvenementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
@@ -23,3 +24,6 @@ Route::get('register', [RegisteredUserController::class, 'create'])->name('regis
 Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
 
 require __DIR__.'/auth.php';
+
+
+Route::resource('evenements', EvenementController::class); // Exclure l'index des idées pour éviter la redondance
