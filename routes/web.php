@@ -7,6 +7,9 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/sidebar', function () {
+    return view('layouts.sidebarAssociation');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

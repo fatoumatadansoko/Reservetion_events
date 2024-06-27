@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class AssociationController extends Controller
 {
     public function dashboardAssociation(){
-        return view('dashbordAssociation');
+        $associations = Association::all();
+       
+        return view('dashbordAssociation', compact('associations'));
     }
     /**
      * Display a listing of the resource.
