@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
-            $table->string('description');
+            $table->text('description');
             $table->integer('nombre_place');
-            $table->integer('lieu');
-            $table->integer('photo');
+            $table->string('lieu');
+            $table->string('photo');
             $table->unsignedBigInteger('association_id');
             $table->foreign('association_id')->references('id')->on('associations')->onDelete('cascade');
             $table->datetime('date_evenement');
