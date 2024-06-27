@@ -18,11 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
+Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
 
 require __DIR__.'/auth.php';
 

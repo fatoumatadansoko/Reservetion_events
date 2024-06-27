@@ -31,6 +31,7 @@
                 <td>{{ $evenement->date_limite_inscription }}</td>
                 <td>
                     <a href="{{ route('evenements.edit', $evenement->id) }}" class="btn btn-warning">Éditer</a>
+                    <a href="{{ route('evenements.show', $evenement->id) }}" class="btn btn-warning">Voir</a>
                     <form action="{{ route('evenements.destroy', $evenement->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')

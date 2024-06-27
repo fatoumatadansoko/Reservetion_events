@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Evenement;
 use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreEvenementRequest;
 
 class EvenementController extends Controller
@@ -53,21 +54,43 @@ class EvenementController extends Controller
 
     public function show(Evenement $evenement)
     {
-        //
+        $evenement->load('association');
+        return view('evenements.show', compact('evenement'));
     }
+    
 
     public function edit(Evenement $evenement)
-    {
-        //
+{
+    $associations = Association::all();
+    return view('evenements.edit', compact('evenement', 'associations'));
+}
+
+
+public function update(StoreEvenementRequest $request, Evenement $evenement)
+{
+    $data = $request->all();
+    if ($request->hasFile('photo')) {
+        // Supprimer l'ancienne photo
+        if ($evenement->photo) {
+            Storage::delete('public/photos/' . $evenement->photo);
+        }
+
+        // Stocker la nouvelle photo
+        $file = $request->file('photo');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $path = $file->storeAs('photos', $filename, 'public');
+        $data['photo'] = basename($path);
     }
 
-    public function update(Request $request, Evenement $evenement)
-    {
-        //
-    }
+    $evenement->update($data);
+
+    return redirect()->route('evenements.index')->with('success', 'Événement mis à jour avec succès.');
+}
+
 
     public function destroy(Evenement $evenement)
     {
-        //
+        $evenement->delete();
+        return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès.');
     }
 }

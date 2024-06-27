@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class AssociationController extends Controller
 {
+    public function dashboardAssociation(){
+        return view('dashbordAssociation');
+    }
     /**
      * Display a listing of the resource.
      */

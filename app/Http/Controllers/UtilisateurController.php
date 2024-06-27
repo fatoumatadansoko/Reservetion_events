@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 
 class UtilisateurController extends Controller
 {
+    public function indexUser(){
+        return view('index');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        
     }
 
     /**

@@ -18,4 +18,9 @@ class Evenement extends Model
         'date_limite_inscription',
         'association_id',
     ];
+    public function association()
+    {
+        return $this->belongsTo(Association::class);
+    }
+
 }

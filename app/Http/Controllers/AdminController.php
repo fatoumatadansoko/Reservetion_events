@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,16 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Récupérer l'utilisateur existant (admin)
+        $adminUser = User::find(5);
+
+        // Vérifier si l'utilisateur existe
+        if ($adminUser) {
+            // Assigner le rôle d'admin à l'utilisateur
+            $adminUser->assignRole('admin');
+
+            // Vous pouvez également attribuer d'autres permissions nécessaires ici
+        }
     }
 
     /**
