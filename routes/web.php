@@ -27,7 +27,9 @@ require __DIR__.'/auth.php';
 
 
 Route::resource('evenements', EvenementController::class); // Exclure l'index des idées pour éviter la redondance
+Route::get('liste', [EvenementController::class, 'liste']); // Exclure l'index des idées pour éviter la redondance
+
 
 Route::get('/preview-layout', function () {
-    return view('layouts.headfoot')->with('content', '');
+    return view('layouts.footer')->with('content', '');
 });
