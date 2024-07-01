@@ -1,4 +1,15 @@
-@extends('layouts.app')
+{{-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body> --}}
 
 @section('title', 'Accueil')
 
@@ -37,7 +48,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Nos chiffres -->
       <div class="text-center py-5 chiffres section">
         <div class="nos-chiffres">
@@ -104,8 +115,8 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div> --}}
-      
-      
+
+
       <div id="carouselExample" class="carousel carousel-dark slide">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -144,47 +155,7 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    {{-- <h1>Liste des Événements</h1>
-    <a href="{{ route('evenements.create') }}" class="btn btn-primary">Créer un Événement</a>
-    <table class="table mt-4">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Libellé</th>
-                <th>Description</th>
-                <th>Nombre de Places</th>
-                <th>Lieu</th>
-                <th>Photo</th>
-                <th>Date de l'Événement</th>
-                <th>Date Limite d'Inscription</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($evenements as $evenement)
-            <tr>
-                <td>{{ $evenement->id }}</td>
-                <td>{{ $evenement->libelle }}</td>
-                <td>{{ $evenement->description }}</td>
-                <td>{{ $evenement->nombre_place }}</td>
-                <td>{{ $evenement->lieu }}</td>
-                <td><img src="{{ asset('storage/photos/' . $evenement->photo) }}" alt="{{ $evenement->libelle }}" width="100"></td>
-                <td>{{ $evenement->date_evenement }}</td>
-                <td>{{ $evenement->date_limite_inscription }}</td>
-                <td>
-                    <a href="{{ route('evenements.edit', $evenement->id) }}" class="btn btn-warning">Éditer</a>
-                    <a href="{{ route('evenements.show', $evenement->id) }}" class="btn btn-warning">Voir</a>
-                    <form action="{{ route('evenements.destroy', $evenement->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table> --}}
-</div>
+
 <div class="py-5 formulaire">
     <h3 class="text-center" id="contact">Contactez-nous</h3>
     <form method="POST" action="">

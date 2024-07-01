@@ -15,7 +15,7 @@ class SetupAdmin extends Command
     public function handle()
     {
         // Récupérer l'utilisateur existant (admin)
-        $adminUser = User::find(1);
+        $adminUser = User::find(5);
 
         if ($adminUser) {
             // Assigner le rôle d'admin à l'utilisateur

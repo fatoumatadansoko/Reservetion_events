@@ -7,11 +7,12 @@
     *,::before,::after{
         box-sizing: border-box
     }
-    body{
-        position: relative;margin: var(--header-height) 0 0 0;
+    /* body{
+        position: relative;
+        margin: var(--header-height) 0 0 0;
         padding: 0 1rem;font-family: var(--body-font);
         font-size: var(--normal-font-size);transition: .5s
-    }
+    } */
     a{
         text-decoration: none
     }
@@ -132,7 +133,7 @@
             }
 
 
-            
+
 .form{
 
     position: relative;
@@ -159,7 +160,7 @@ border-left: 1px solid #d1d5db;
 }
 
 .left-pan i{
-   
+
    padding-left: 10px;
 }
 
