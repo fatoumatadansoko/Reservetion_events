@@ -38,20 +38,23 @@
                     <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;">
                         1000
                     </div>
+                    <h6>Évenements au total </h6>
                 </li>
                 <li class="step ">
-                    <div><i class="fas fa-dot"></i></div> 
+                    <div><i class="fas fa-dot"></i></div>
                     <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;">
                         1000
                     </div>
+                    <h6>Évenements au total </h6>
                 </li>
                 <li class="step ">
-                    <div><i class="fas fa-dot"></i></div> 
+                    <div><i class="fas fa-dot"></i></div>
                     <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;">
                         1000
                     </div>
+                    <h6>Évenements au total </h6>
                 </li>
-                
+
             </ul>
         </div>
     </div>
