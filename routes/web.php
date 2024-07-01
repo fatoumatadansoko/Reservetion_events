@@ -42,4 +42,5 @@ Route::get('/preview-layout', function () {
 Route::controller(TesteController::class)->group(function () {
       Route::get('/liste_events_Ass','liste');
       Route::get('/liste_reserve_User','liste_reserve');
+      Route::get('/liste_association_Admin','liste_association');
 });

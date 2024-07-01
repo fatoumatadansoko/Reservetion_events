@@ -13,4 +13,7 @@ class TesteController extends Controller
     public function liste_reserve (){
         return view ('utilisateurs/liste_reservation');
     }
+    public function liste_association(){
+        return view('admin.list_association');
+    }
 }
