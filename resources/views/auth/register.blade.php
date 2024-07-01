@@ -14,6 +14,7 @@
             </a>
         </li>
     </ul>
+
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -22,7 +23,7 @@
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 
     <!-- User registration form -->
     <div id="user-form" class="mb-4">
@@ -75,7 +76,6 @@
             </div>
         </form>
     </div>
-
 
     <!-- Association registration form -->
     <div id="association-form" class="mb-4" style="display: none;">
@@ -163,3 +163,17 @@
         });
     });
 </script>
+
+<style>
+    /* Style global pour toute la page */
+    body {
+        background-color: blue;
+    }
+
+    .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+</style>
+    

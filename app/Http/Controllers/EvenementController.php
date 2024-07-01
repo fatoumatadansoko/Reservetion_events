@@ -93,4 +93,9 @@ public function update(StoreEvenementRequest $request, Evenement $evenement)
         $evenement->delete();
         return redirect()->route('evenements.index')->with('success', 'Événement supprimé avec succès.');
     }
+    public function liste()
+    {
+        $evenements = Evenement::all();
+        return view('evenements.liste', compact('evenements'));
+    }
 }
