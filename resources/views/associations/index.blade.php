@@ -2,10 +2,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 @extends('layouts.sidebarAssociation')
@@ -22,7 +25,8 @@
         </button>
 
         <!-- Modal -->
-        <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade modal-lg ml-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -83,10 +87,12 @@
                                 <label for="description">Description</label>
                                 <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description') }}</textarea>
                             </div>
+                            <input type="hidden" class="form-control" id="association_id" name="association_id" required
+                                value="{{ $association->id }}">
 
 
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="association_id">Association</label>
                                 <select class="form-control" id="association_id" name="association_id" required>
                                     @foreach ($associations as $association)
@@ -95,7 +101,7 @@
                                             {{ $association->adresse }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ferme</button>
@@ -108,46 +114,51 @@
                 </div>
             </div>
         </div>
-    </div>
-    <table class="table mt-4">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Libellé</th>
-                <th>Description</th>
-                <th>Nombre de Places</th>
-                <th>Lieu</th>
-                <th>Photo</th>
-                <th>Date de l'Événement</th>
-                <th>Date Limite d'Inscription</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($evenements as $evenement)
-            <tr>
-                <td>{{ $evenement->id }}</td>
-                <td>{{ $evenement->libelle }}</td>
-                <td>{{ $evenement->description }}</td>
-                <td>{{ $evenement->nombre_place }}</td>
-                <td>{{ $evenement->lieu }}</td>
-                <td><img src="{{ asset('storage/app/public/photos/' . $evenement->photo) }}" alt="{{ $evenement->libelle }}" width="100"></td>
-                <td>{{ $evenement->date_evenement }}</td>
-                <td>{{ $evenement->date_limite_inscription }}</td>
-                <td>
-                    <a href="{{ route('evenements.edit', $evenement->id) }}" class="btn btn-warning"><i class='bx bx-edit-alt'></i></a>
-                    <a href="{{ route('evenements.show', $evenement->id) }}" class="btn btn-warning"><i class="fa-regular fa-eye"></i></a>
-                    <form action="{{ route('evenements.destroy', $evenement->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger"><i class='bx bx-trash'></i></button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
 
-    @endsection
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Libellé</th>
+                    <th>Description</th>
+                    <th>Nombre de Places</th>
+                    <th>Lieu</th>
+                    <th>Photo</th>
+                    <th>Date de l'Événement</th>
+                    <th>Date Limite d'Inscription</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($evenements as $evenement)
+                    <tr>
+                        <td>{{ $evenement->id }}</td>
+                        <td>{{ $evenement->libelle }}</td>
+                        <td>{{ $evenement->description }}</td>
+                        <td>{{ $evenement->nombre_place }}</td>
+                        <td>{{ $evenement->lieu }}</td>
+                        <td><img src="{{ asset('storage/app/public/photos/' . $evenement->photo) }}"
+                                alt="{{ $evenement->libelle }}" width="100"></td>
+                        <td>{{ $evenement->date_evenement }}</td>
+                        <td>{{ $evenement->date_limite_inscription }}</td>
+                        <td>
+                            <a href="{{ route('evenements.edit', $evenement->id) }}" class="btn btn-warning"><i
+                                    class='bx bx-edit-alt'></i></a>
+                            <a href="{{ route('evenements.show', $evenement->id) }}" class="btn btn-warning"><i
+                                    class="fa-regular fa-eye"></i></a>
+                            <form action="{{ route('evenements.destroy', $evenement->id) }}" method="POST"
+                                style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class='bx bx-trash'></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>

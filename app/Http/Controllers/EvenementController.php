@@ -48,7 +48,7 @@ class EvenementController extends Controller
         // Enregistrer l'événement dans la base de données
         Evenement::create($data);
 
-        return redirect()->route('evenements.index')->with('success', 'Événement créé avec succès.');
+        return redirect()->back();
     }
 
 

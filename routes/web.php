@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\EvenementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EvenementController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
@@ -31,7 +32,7 @@ require __DIR__.'/auth.php';
 
 Route::resource('evenements', EvenementController::class); // Exclure l'index des idées pour éviter la redondance
 Route::get('liste', [EvenementController::class, 'liste']); // Exclure l'index des idées pour éviter la redondance
-
+Route::resource('associations', AssociationController::class);
 
 Route::get('/preview-layout', function () {
     return view('layouts.footer')->with('content', '');

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evenement;
 use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssociationController extends Controller
 {
-    public function dashboardAssociation(){
+    public function dashboardAssociation()
+    {
         $associations = Association::all();
 
         return view('dashbordAssociation', compact('associations'));
@@ -17,9 +20,18 @@ class AssociationController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $association = $user->association;
+    
+        if (!$association) {
+            return redirect()->route('dashboard')->with('error', 'No association linked to this user.');
+        }
+    
+        $evenements = Evenement::where('association_id', $association->id)->get();
+    
+        return view('associations.index', compact('evenements', 'association'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
