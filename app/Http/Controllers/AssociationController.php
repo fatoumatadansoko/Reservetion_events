@@ -9,7 +9,7 @@ class AssociationController extends Controller
 {
     public function dashboardAssociation(){
         $associations = Association::all();
-       
+
         return view('dashbordAssociation', compact('associations'));
     }
     /**
