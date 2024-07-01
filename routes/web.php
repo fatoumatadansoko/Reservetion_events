@@ -44,4 +44,5 @@ Route::controller(TesteController::class)->group(function () {
       Route::get('/liste_reserve_User','liste_reserve');
       Route::get('/liste_association_Admin','liste_association');
       Route::get('/liste_user_Ass','liste_user');
+      Route::get('detail_events','detail_events');
 });

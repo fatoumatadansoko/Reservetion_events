@@ -1,0 +1,176 @@
+*{
+    margin: 00;
+    padding: 00;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.baniere{
+
+    color: #fff;
+    width: 100%;
+    height:28rem ;
+    background: linear-gradient(rgba(0, 0, 0, 0.437), rgba(5, 1, 28, 0.703)), url('https://img.freepik.com/photos-gratuite/interieur-salle-reunion-bois-equipement-complet_1258-84896.jpg?t=st=1719822101~exp=1719825701~hmac=228fbb8aa8d9c6b5c7a3a254c201e261df03ce28d80316e3f964dec2fcdc0f2d&w=1060');
+
+  background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-around;
+  padding: 4.5rem;
+
+}
+
+.ligne{
+    height: 13rem;
+    background-color:#0D4C9B ;
+     width: 0.35rem;
+     z-index: 1000;
+     margin-top: -0.5rem;
+}
+
+.baniere_element{
+    display: flex;
+    justify-content: space-between;
+gap: 4rem;
+margin-right: 8rem;
+
+}
+.titre_baniere{
+ font-size: 3rem;
+}
+.nom_association{
+    font-size:2rem ;
+}
+.baniere .baniere_element div h1 {
+    width: 40rem; height: auto;
+}
+.logoASS{
+    width: 12.5rem;
+    height: 12.5rem;
+}
+.All-info{
+    margin: 3.5rem 11rem;
+}
+.block_info{
+    margin: 2rem;
+
+}
+
+.info_titre{
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 2.37rem;
+    margin-left: 2rem ;
+}
+
+.box-info{
+  margin: 1rem 0rem;
+  font-size: 1.625rem;
+  gap: 3rem;
+
+}
+.box-info img{
+    width: 2rem;
+     height:2rem;
+}
+.desc{
+    margin: 3.5rem 6rem;
+}
+.text-desc{
+    font-size: 1.625rem;
+    font-weight: 500;
+    margin: 1.5rem;
+}
+.btn_reserve{
+    width: 9.1rem;
+    height: auto;
+    padding: 0.5rem;
+    background-color:#0D4C9B  ;
+    border: none;
+      margin-right: 10rem;
+       margin-top: 2rem;
+        font-size:1.625rem ;
+         font-weight: 500;
+         position: fixed;
+         margin-left: 80%;
+        text-align: center;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+       border-radius: 0.4rem;
+}
+/* la partie responsive Mobile
+*/
+@media (max-width: 480px) {
+.baniere{
+    padding: 1rem;
+
+    height:19rem ;
+}
+    .baniere_element{
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+        margin: 0.5rem;
+
+    }
+
+    .logoASS{
+        width: 6.25rem;
+        height: 6.25rem;
+    }
+
+   .ligne{
+    height:0.4rem;
+    background-color:#08106f ;
+     width: 16rem;
+     position: absolute;
+    margin-top: 7.5rem ;
+     z-index: 1000;
+   }
+
+   .titre_baniere{
+    font-size: 1.30rem;
+
+   }
+
+   .nom_association{
+    font-size: 1.10rem;
+   }
+
+   .baniere .baniere_element div h1{
+    width: 100%;
+   }
+   .All-info{
+    margin: 0.5rem;
+   }
+   .info_titre{
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-left: 0.8rem;
+   }
+   .box-info{
+    font-size: 1.125rem;
+    gap:1rem;
+   }
+   .block_info{
+    margin: 0.5rem;
+   }
+   .box-info img{
+    height: 1.5rem;
+    width: 1.5rem;
+   }
+   .btn_reserve{
+    width: 6rem;
+   margin-left: 16rem;
+   font-size: 1.25rem;
+   }
+   .desc{
+    margin: 0.6rem;
+   }
+   .text-desc{
+    font-size: 1.125rem;
+    margin: 0.8rem;
+   }
+}
