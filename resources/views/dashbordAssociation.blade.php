@@ -23,12 +23,15 @@
                 style="height: 150px; width:150px; background: #0d4c9b;">
                 1000
             </div>
+            <h6>Inscrits</h6>
+
         </div>
         <div class="col bg-light mt-5 p-5 d-flex justify-content-center">
             <div class="rounded-circle mt-1 p-5 d-flex justify-content-center"
                 style="height: 150px; width:150px; background: #0d4c9b;">
                 1000
             </div>
+            <h6>Évenements</h6>
         </div>
     </div>
 @endsection

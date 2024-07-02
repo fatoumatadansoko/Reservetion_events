@@ -1,3 +1,4 @@
+use App\Models\Evenement;
 {{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -35,24 +36,24 @@
             <ul class="bs4-order-tracking ml-5 ">
                 <li class="step ">
                     <div><i class="fas fa-dot"></i></div>
-                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;">
-                        1000
+                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;font-size:30px;">
+                        {{$totalEvenements}}
                     </div>
                     <h6>Évenements au total </h6>
                 </li>
                 <li class="step ">
                     <div><i class="fas fa-dot"></i></div>
-                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;">
-                        1000
+                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b; font-size:30px;">
+                        {{ $totalUsers }}
                     </div>
-                    <h6>Évenements au total </h6>
+                    <h6>Utilisateurs total </h6>
                 </li>
                 <li class="step ">
                     <div><i class="fas fa-dot"></i></div>
-                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;">
-                        1000
+                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b; font-size:30px;">
+                        {{ $totalAssociations }}
                     </div>
-                    <h6>Évenements au total </h6>
+                    <h6>Associations au total </h6>
                 </li>
 
             </ul>
