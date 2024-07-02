@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class UtilisateurController extends Controller
 {
@@ -15,7 +17,28 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-        
+        $users = Utilisateur::all(); // Récupère tous les utilisateurs
+        $permissions = Permission::all(); // Récupère toutes les permissions
+        return view('associations.liste_utilisateur', compact('users', 'permissions'));
+    }
+
+    public function editUser($id)
+    {
+        $user = Utilisateur::findOrFail($id);
+        $permissions = Permission::all(); // Récupère toutes les permissions
+        return view('users.edit', compact('user', 'permissions'));
+    }
+    
+    public function updateUser(Request $request, $id)
+    {
+        $user = Utilisateur::findOrFail($id);
+        $user->update($request->only('prenom', 'nom', 'email', 'telephone'));
+
+        // Met à jour les permissions de l'utilisateur
+        $user->syncPermissions($request->permissions);
+
+        // Rediriger avec un message de succès, si nécessaire
+        return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
     /**
@@ -61,8 +84,9 @@ class UtilisateurController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Utilisateur $utilisateur)
+    public function destroy(User $utilisateur)
     {
-        //
+        $utilisateur->delete();
+        return redirect()->back()->with('success', 'Événement supprimé avec succès.');
     }
 }

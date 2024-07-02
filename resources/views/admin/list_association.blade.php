@@ -10,65 +10,60 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
+@extends('layouts.sidebarAdmin')
+@section('content')
 
 
-  <table class="table" style="font-size:0.875rem ; font-family: 'opens sans' ;">
-
+<table class="table" style="font-size:0.875rem; font-family: 'Open Sans';">
     <thead>
-
-      <tr>
-        <th scope="col">Association</th>
-        <th scope="col">Status</th>
-        <th scope="col">types</th>
-        <th scope="col">Ninea</th>
-        <th scope="col">Contact</th>
-        <th scope="col">Action</th>
-      </tr >
-
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Association</th>
+            <th scope="col">Status</th>
+            <th scope="col">Types</th>
+            <th scope="col">Ninea</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Action</th>
+        </tr>
     </thead>
-    <tbody style="text-align:start;  align-items: center;">
-      <tr>
-        <td> <img src="https://img.freepik.com/photos-gratuite/mise-plat-aquarelle-coloree-espace-copie_23-2148419527.jpg?ga=GA1.1.987826604.1713952553&semt=sph"
-            alt="" style="width:3rem; height:3rem; object-fit:cover; "> Simplon</td>
-
-        <td> <p style="vertical-align: bottom; border: 0.01rem solid #7FC008; color:#7FC008; font-weight: 500; border-radius: 0.25rem ; padding: 0.2rem 0.4rem;display: inline-block; ">Activer</p></td>
-        <td>Bravo</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; align-items: center;">123456</p></td>
-        <td> 70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-      <tr>
-        <td> <img src="https://img.freepik.com/photos-gratuite/mise-plat-aquarelle-coloree-espace-copie_23-2148419527.jpg?ga=GA1.1.987826604.1713952553&semt=sph"
-            alt="" style="width:3rem; height:3rem; object-fit:cover; "> Simplon</td>
-
-        <td> <p style="vertical-align: bottom; border: 0.01rem solid #DB303F; color:#DB303F; font-weight: 500; border-radius: 0.25rem ; padding: 0.2rem 0.4rem;display: inline-block; ">Desactiver</p></td>
-        <td>Bravo</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; align-items: center;">123456</p></td>
-        <td> 70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-      <tr>
-        <td> <img src="https://img.freepik.com/photos-gratuite/mise-plat-aquarelle-coloree-espace-copie_23-2148419527.jpg?ga=GA1.1.987826604.1713952553&semt=sph"
-            alt="" style="width:3rem; height:3rem; object-fit:cover; "> Simplon</td>
-
-        <td> <p style="vertical-align: bottom; border: 0.01rem solid #7FC008; color:#7FC008; font-weight: 500; border-radius: 0.25rem ; padding: 0.2rem 0.4rem;display: inline-block; ">Activer</p></td>
-        <td>Bravo</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; align-items: center;">123456</p></td>
-        <td> 70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-      <tr>
-        <td> <img src="https://img.freepik.com/photos-gratuite/mise-plat-aquarelle-coloree-espace-copie_23-2148419527.jpg?ga=GA1.1.987826604.1713952553&semt=sph"
-            alt="" style="width:3rem; height:3rem; object-fit:cover; "> Simplon</td>
-
-        <td> <p style="vertical-align: bottom; border: 0.01rem solid #DB303F; color:#DB303F; font-weight: 500; border-radius: 0.25rem ; padding: 0.2rem 0.4rem;display: inline-block; ">Desactiver</p></td>
-        <td>Bravo</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; align-items: center;">123456</p></td>
-        <td> 70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
+    <tbody style="text-align:start; align-items: center;">
+        @foreach ($associations as $association)
+        <tr>
+            <td>
+                <img src="{{ asset('storage/'. $association->user->photo) }}" alt="" style="width:3rem; height:3rem; object-fit:cover;"> {{ $association->name }}
+            </td>
+            <td>
+                {{ $association->user->nom }}
+            </td>
+            <td>
+                @if($association->is_active)
+                <p style="vertical-align: bottom; border: 0.01rem solid #7FC008; color:#7FC008; font-weight: 500; border-radius: 0.25rem; padding: 0.2rem 0.4rem; display: inline-block;">Activé</p>
+                @else
+                <p style="vertical-align: bottom; border: 0.01rem solid #FF0000; color:#FF0000; font-weight: 500; border-radius: 0.25rem; padding: 0.2rem 0.4rem; display: inline-block;">Désactivé</p>
+                @endif
+            </td>
+            <td>{{ $association->secteur_activite }}</td>
+            <td>
+                <p style="border: 0.01rem solid #000; border-radius: 10rem; padding: 0.2rem 0.4rem; display: inline-block; align-items: center;">{{ $association->ninea }}</p>
+            </td>
+            <td>{{ $association->user->telephone }}</td>
+            <td>
+                <form method="POST" action="{{ route('toggle.association.status', $association->id) }}">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="btn btn-link">
+                        @if($association->is_active)
+                            <i class="fas fa-toggle-on" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-toggle-off" style="color: red;"></i>
+                        @endif
+                    </button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
     </tbody>
-  </table>
+</table>
 
   <style>
  hr {
@@ -79,6 +74,7 @@
             background: #000;
         }
   </style>
+@endsection
 
 
 </html>
