@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ReservationController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [EvenementController::class,'index'])->name('accueil');
 Route::get('/sidebar', function () {
     return view('layouts.sidebarAssociation');
 });
@@ -21,8 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-use App\Http\Controllers\EvenementController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
@@ -31,7 +30,7 @@ require __DIR__.'/auth.php';
 
 
 Route::resource('evenements', EvenementController::class); // Exclure l'index des idées pour éviter la redondance
-Route::get('liste', [EvenementController::class, 'liste']); // Exclure l'index des idées pour éviter la redondance
+Route::get('liste', [EvenementController::class, 'liste'])->name('liste'); // Exclure l'index des idées pour éviter la redondance
 
 
 Route::get('/preview-layout', function () {
@@ -47,3 +46,5 @@ Route::controller(TesteController::class)->group(function () {
       Route::get('detail_events','detail_events');
       Route::get('profil_user','profil_user');
 });
+Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->name('reservations.approve');
+Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');

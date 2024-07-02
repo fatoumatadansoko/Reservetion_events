@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.home')
 
 @section('title', 'Accueil')
 
@@ -23,7 +23,5 @@
           </div>
           @endforeach
       </div>
-      <div class="d-flex justify-content-center">
-          <button class="btn btn-primary">Voir plus</button>
-      </div>
+      
       @endsection
