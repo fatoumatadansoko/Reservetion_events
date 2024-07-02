@@ -19,4 +19,7 @@ class TesteController extends Controller
     public function liste_user(){
         return view('associations.liste_utilisateur');
     }
+    public function detail_events(){
+        return view('evenements.detail');
+    }
 }
