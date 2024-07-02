@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evenement;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Mail\ReservationMail;
 use App\Http\Controllers\Controller;
-use App\Models\Evenement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+
 
 class ReservationController extends Controller
 {
@@ -17,7 +18,18 @@ class ReservationController extends Controller
      */
     public function index()
     {
+
         
+
+        $user = Auth::user();
+        $association = $user->association;
+        // Récupérer les événements de l'association avec leurs réservations
+        $evenements = Evenement::where('association_id', $association->id)
+            ->with('reservations')
+            ->get();
+
+        return view('associations.reservations', compact('evenements'));
+
     }
 
     /**

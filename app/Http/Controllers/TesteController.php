@@ -22,4 +22,7 @@ class TesteController extends Controller
     public function detail_events(){
         return view('evenements.detail');
     }
+    public function profil_user(){
+        return view('utilisateurs.profil_user');
+    }
 }

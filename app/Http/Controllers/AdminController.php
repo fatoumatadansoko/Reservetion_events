@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Evenement;
+use App\Models\Association;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +16,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $totalUsers = Utilisateur::count();
+        $totalEvenements = Evenement::count();
+        $totalAssociations = Association::count();
+
+        return view('dashboard', compact('totalUsers', 'totalEvenements', 'totalAssociations'));
     }
 
     /**
