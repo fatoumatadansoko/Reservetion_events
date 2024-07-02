@@ -56,7 +56,7 @@ class EvenementController extends Controller
     public function show(Evenement $evenement)
     {
         $evenement->load('association');
-        return view('evenements.detail', compact('evenement'));
+        return view('evenements.show', compact('evenement'));
     }
 
 

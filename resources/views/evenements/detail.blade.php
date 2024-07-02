@@ -26,6 +26,7 @@
 <form action="{{ route('reserver') }}" method="POST">
     @csrf
     <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
+    <input type="hidden" name="statut" value="acceptée">
     <input type="hidden" name="utilisateur_id" value="{{ auth()->user()->utilisateur->id}}">
     <button type="submit" class="btn_reserve">Réserver</button>
 </form>
