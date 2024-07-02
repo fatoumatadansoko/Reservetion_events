@@ -1,0 +1,92 @@
+*{
+    margin: 00;
+    padding: 00;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.baniere{
+    width: 100%;
+    height: 28.625rem;
+    padding: 2rem;
+    background-color:#0D4C9B ;
+}
+.conteneur{
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    max-height:23.75rem ;
+}
+.photoprofil{
+    width: 16.125rem;
+    height: 16.125rem;
+  border-radius:10rem ;
+}
+.cont-form{
+    width: 60%;
+    display: flex;
+}
+.cont-form form{
+    max-height:23.75rem ;
+    gap: 2rem;
+}
+.box-form{
+    width: 26rem;
+}
+.box-form input{
+    color: #fff;
+    border: #fff solid 0.1rem;
+    background-color: #0D4C9B;
+    padding: 0.3rem;
+    margin-left: 1rem;
+    width: 70%;
+}
+.cont-form p{
+   font-weight: 400;
+    font-size: 1.2rem;
+    width: 100%;
+}
+.cont-form button {
+
+    background-color: #fff;
+    color: #0D4C9B;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin:  -01.5rem 0;
+}
+
+/* la patie responsive mobile */
+
+@media (max-width: 480px) {
+.baniere{
+    height: 47rem;
+}
+
+.conteneur{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem;
+}
+.photoprofil{
+    width: 7.8rem;
+    height: 7.8rem;
+}
+.cont-form{
+    width: 20rem;
+margin: 02rem 00;
+    align-items: center;
+}
+.box-form{
+
+}
+.box-form input {
+
+}
+
+
+
+
+}
