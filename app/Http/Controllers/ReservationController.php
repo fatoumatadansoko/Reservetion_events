@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Evenement;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Mail\ReservationMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
 
 class ReservationController extends Controller
 {
@@ -14,6 +18,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
+
+        
+
         $user = Auth::user();
         $association = $user->association;
         // Récupérer les événements de l'association avec leurs réservations
@@ -22,6 +29,7 @@ class ReservationController extends Controller
             ->get();
 
         return view('associations.reservations', compact('evenements'));
+
     }
 
     /**
@@ -71,4 +79,21 @@ class ReservationController extends Controller
     {
         //
     }
+    public function reserver(Request $request)
+    {
+        
+        $reservation = Reservation::create($request->all());
+        
+        $reservation = Reservation::findOrFail($reservation->id);
+        $reservation->statut = 'acceptée';
+        $reservation->save();
+        Mail::to(Auth::user()->email)->send(new ReservationMail($reservation, $reservation->statut));
+
+
+    return back()->with('message', 'Réservation effectuée avec succès.');
 }
+}
+
+
+
+    
