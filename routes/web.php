@@ -5,11 +5,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvenementController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\ReservationController;
 // use App\Http\Controllers\EvenementController;
 
-use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 // use App\Http\Controllers\ReservationController;
 // use App\Http\Controllers\Auth\RegisteredUserController;
 
@@ -43,3 +44,8 @@ Route::get('liste', [EvenementController::class, 'liste'])->name('liste'); // Ex
 
 
 Route::post('/reserver', [ReservationController::class, 'reserver'])->name('reserver');
+
+Route::resource('utilisateur', UtilisateurController::class);
+
+//la route pour update photo profile
+Route::put('updatePhoto',[UtilisateurController::class,'updatePhoto'])->name('user.updatePhoto') ;

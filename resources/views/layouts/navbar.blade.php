@@ -32,6 +32,7 @@
           <img src="{{ asset('storage/' . Auth::user()->photo) }}" class="rounded-circle" alt="Photo de profil" width="40" height="40">
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{route('utilisateur.edit',$utilisateur = Auth::user()->id)}}"> profil</a>
           <a class="dropdown-item" href="{{ route('logout') }}"
              onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
