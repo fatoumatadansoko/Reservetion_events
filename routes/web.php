@@ -41,16 +41,5 @@ Route::resource('associations', AssociationController::class);
 Route::get('liste', [EvenementController::class, 'liste'])->name('liste'); // Exclure l'index des idées pour éviter la redondance
 
 
-Route::get('/preview-layout', function () {
-    return view('layouts.footer')->with('content', '');
-});
 
-Route::controller(TesteController::class)->group(function () {
-      Route::get('/liste_events_Ass','liste');
-      Route::get('/liste_reserve_User','liste_reserve');
-      Route::get('/liste_association_Admin','liste_association');
-      Route::get('/liste_user_Ass','liste_user');
-      Route::get('detail_events','detail_events');
-      Route::get('profil_user','profil_user');
-});
 Route::post('/reserver', [ReservationController::class, 'reserver'])->name('reserver');

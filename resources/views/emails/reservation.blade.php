@@ -4,16 +4,24 @@
     <title>Nouvelle Réservation</title>
 </head>
 <body>
-    # Notification de la réservation
+    <h1>Notification de la Réservation</h1>
 
-Bonjour {{ auth()->user()->utilisateur->prenom }} {{  auth()->user()->nom}},
+    <p>Bonjour {{ $user->utilisateur->prenom }} {{ $user->nom }},</p>
 
-{{-- Nous voulons vous informer que votre réservation sur l'évènement **"{{ $evenement['libelle'] }}"** a bien reussi. --}}
+    <p>Nous voulons vous informer que votre réservation sur l'évènement <strong>{{ $evenement->libelle }}</strong> a bien réussi.</p>
 
-**Statut actuel :** {{ $reservation['statut'] }}
+    <p><strong>Détails de l'événement :</strong></p>
+    <ul>
+        <li><strong>Lieu :</strong> {{ $evenement->lieu }}</li>
+        <li><strong>Date de l'événement :</strong> {{ $evenement->date_evenement }}</li>
+        <li><strong>Date limite d'inscription :</strong> {{ $evenement->date_limite_inscription }}</li>
+        <li><strong>Nombre de places :</strong> {{ $evenement->nombre_place }}</li>
+        <li><strong>Description :</strong> {{ $evenement->description }}</li>
+    </ul>
 
+    <p><strong>Statut actuel :</strong> {{ $reservation->statut }}</p>
 
-Merci,<br>
-    <p>{{ $reservation['created_at'] }}</p>
+    <p>Merci,<br>
+    <p>{{ $reservation->created_at }}</p>
 </body>
 </html>

@@ -29,7 +29,7 @@
       @auth
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="{{ asset('storage/photos/' . Auth::user()->photo) }}" class="rounded-circle" alt="Photo de profil" width="40" height="40">
+          <img src="{{ asset('storage/' . Auth::user()->photo) }}" class="rounded-circle" alt="Photo de profil" width="40" height="40">
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('logout') }}"

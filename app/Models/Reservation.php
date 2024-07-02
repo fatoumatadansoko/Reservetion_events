@@ -14,4 +14,8 @@ class Reservation extends Model
         'utilisateur_id',
        
     ];
+    public function utilisateur()
+    {
+        return $this->hasMany(Utilisateur::class);
+    }
 }

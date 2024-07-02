@@ -12,12 +12,15 @@ class ReservationMail extends Mailable
 
     public $reservation;
     public $user;
+    public $evenement;
 
-    public function __construct($reservation, $user)
+    public function __construct($reservation, $user, $evenement)
     {
-        $this->reservation = $reservation;
-        $this->user=$user;
         $user = Auth::user();
+        $this->reservation = $reservation;
+        $this->evenement = $evenement;
+        $this->user=$user;
+       
     }
 
     public function build()
