@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Mail\ReservationMail;
+use App\Http\Controllers\Controller;
+use App\Models\Evenement;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -12,7 +17,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -62,4 +67,21 @@ class ReservationController extends Controller
     {
         //
     }
+    public function reserver(Request $request)
+    {
+        
+        $reservation = Reservation::create($request->all());
+        
+        $reservation = Reservation::findOrFail($reservation->id);
+        $reservation->statut = 'acceptée';
+        $reservation->save();
+        Mail::to(Auth::user()->email)->send(new ReservationMail($reservation, $reservation->statut));
+
+
+    return back()->with('message', 'Réservation effectuée avec succès.');
 }
+}
+
+
+
+    

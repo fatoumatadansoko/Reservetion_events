@@ -45,5 +45,4 @@ Route::controller(TesteController::class)->group(function () {
       Route::get('/liste_user_Ass','liste_user');
       Route::get('detail_events','detail_events');
 });
-Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->name('reservations.approve');
-Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
+Route::post('/reserver', [ReservationController::class, 'reserver'])->name('reserver');
