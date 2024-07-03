@@ -5,58 +5,41 @@ use App\Models\Evenement;
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-
 </x-app-layout> --}}
 @extends('layouts.sidebarAdmin')
 @section('content')
-    <div class="col grid-margin">
-        <div class="card bg-twitter d-flex" style="height: 30vh;  background: #0d4c9b;">
-            <div class="card-body">
-                <div class="d-flex flex-row ">
-                    <div class="p-5 ml-5">
-                        <h6 class="text-white mb-0">3k followers</h6>
-                        <p class="text-white card-text">total followers on twitter</p>
-                    </div>
-                    <i class="fa fa-twitter text-white icon-md"></i>
-                    <img src="{{ asset('images/logo.png') }}" alt="" style="width: 20%">
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row p-5">
-        <div class="col-2 titre">
+        <div class="col-12 col-md-2 titre">
             <h4>Statistiques</h4>
             <p style="color:#0d4c9b">
-                les statistiques du moments
+                Les statistiques du moment
             </p>
         </div>
-        <div class="col card card-timeline border-none bg-light">
-            <ul class="bs4-order-tracking ml-5 ">
-                <li class="step ">
-                    <div><i class="fas fa-dot"></i></div>
-                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b;font-size:30px;">
-                        {{$totalEvenements}}
+        <div class="col-12 col-md-10 card card-timeline border-none bg-light">
+            <div class="row">
+                <img src="{{ asset('images/2.svg') }}" alt="" class="img-fluid">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-4 d-flex flex-column align-items-center mb-3">
+                    <div class="rounded-circle p-5 d-flex justify-content-center align-items-center" style="height: 150px; width:150px; background: #0d4c9b; font-size:30px; color:aliceblue;">
+                        {{ $totalEvenements }}
                     </div>
-                    <h6>Évenements au total </h6>
-                </li>
-                <li class="step ">
-                    <div><i class="fas fa-dot"></i></div>
-                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b; font-size:30px;">
+                    <h6>Évenements au total</h6>
+                </div>
+                <div class="col-12 col-md-4 d-flex flex-column align-items-center mb-3">
+                    <div class="rounded-circle p-5 d-flex justify-content-center align-items-center" style="height: 150px; width:150px; background: #0d4c9b; font-size:30px; color:aliceblue;">
                         {{ $totalUsers }}
                     </div>
-                    <h6>Utilisateurs total </h6>
-                </li>
-                <li class="step ">
-                    <div><i class="fas fa-dot"></i></div>
-                    <div class="rounded-circle mt-5 p-5 d-flex justify-content-center" style="height: 150px; width:150px; background: #0d4c9b; font-size:30px;">
+                    <h6>Utilisateurs au total</h6>
+                </div>
+                <div class="col-12 col-md-4 d-flex flex-column align-items-center mb-3">
+                    <div class="rounded-circle p-5 d-flex justify-content-center align-items-center" style="height: 150px; width:150px; background: #0d4c9b; font-size:30px; color:aliceblue;">
                         {{ $totalAssociations }}
                     </div>
-                    <h6>Associations au total </h6>
-                </li>
-
-            </ul>
+                    <h6>Associations au total</h6>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
