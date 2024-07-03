@@ -13,7 +13,8 @@ use Spatie\Permission\Models\Permission;
 
 class UtilisateurController extends Controller
 {
-    public function indexUser(){
+    public function indexUser()
+    {
         return view('index');
     }
     /**
@@ -33,7 +34,7 @@ class UtilisateurController extends Controller
         $permissions = Permission::all(); // Récupère toutes les permissions
         return view('users.edit', compact('user', 'permissions'));
     }
-    
+
     public function updateUser(Request $request, $id)
     {
         $user = Utilisateur::findOrFail($id);
@@ -44,7 +45,6 @@ class UtilisateurController extends Controller
 
         // Rediriger avec un message de succès, si nécessaire
         return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès.');
-
     }
 
     /**
@@ -76,18 +76,18 @@ class UtilisateurController extends Controller
      */
     public function edit(Utilisateur $utilisateur)
     {
-           // Récupérer l'utilisateur connecté
-    $utilisateurConnecte = Auth::user()->id;
+        // Récupérer l'utilisateur connecté
+        $utilisateurConnecte = Auth::user()->id;
 
-    // Vérifier si l'utilisateur connecté est celui dont on veut éditer le profil
-    if ($utilisateurConnecte  == $utilisateur->id) {
-        // Charger les relations de l'utilisateur en cours d'édition
-        $utilisateur->load('user');
-        return view('utilisateurs.profil_user', compact('utilisateur', 'utilisateurConnecte'));
-    }
+        // Vérifier si l'utilisateur connecté est celui dont on veut éditer le profil
+        if ($utilisateurConnecte  == $utilisateur->id) {
+            // Charger les relations de l'utilisateur en cours d'édition
+            $utilisateur->load('user');
+            return view('utilisateurs.profil_user', compact('utilisateur', 'utilisateurConnecte'));
+        }
 
 
-    return redirect()->back();
+        return redirect()->back();
     }
     /**
      * Update the specified resource in storage.
@@ -95,10 +95,10 @@ class UtilisateurController extends Controller
     public function update(UpdateProfilutilisateurRequest $request, Utilisateur $utilisateur)
     {
 
-     $utilisateur->update($request->validated());
-    Auth::user()->update($request->validated());
+        $utilisateur->update($request->validated());
+        Auth::user()->update($request->validated());
 
-        return redirect()->back()->with('message','modification du profil reussi');
+        return redirect()->back()->with('message', 'modification du profil reussi');
     }
 
     /**
@@ -112,7 +112,7 @@ class UtilisateurController extends Controller
 
     //modifier le photo de profil de l'utilisateur
 
-        public function updatePhoto(UpdatePhotouserRequest  $request)
+    public function updatePhoto(UpdatePhotouserRequest  $request)
     {
         // Récupérer l'utilisateur authentifié
         $user = Auth::user();
@@ -132,7 +132,4 @@ class UtilisateurController extends Controller
         // Rediriger avec un message de succès
         return redirect()->back()->with('message', 'Photo de profil mise à jour avec succès');
     }
-
 }
-
-
