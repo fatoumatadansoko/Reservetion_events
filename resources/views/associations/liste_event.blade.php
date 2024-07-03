@@ -10,7 +10,9 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
-
+@extends('layouts.sidebarAdmin')
+@section('content')
+    
 
   <table class="table" style="font-size:0.875rem ; font-family: 'opens sans' ;">
 
@@ -21,41 +23,19 @@
         <th scope="col">description</th>
         <th scope="col">date</th>
         <th scope="col">Nombre de place</th>
-        <th scope="col">Action</th>
-
       </tr >
 
     </thead>
     <tbody>
+        @foreach ($evenements as $evenement)
       <tr>
-        <td>Hachaton</td>
-        <td>graduation day</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; "> 21/12/2024</p></td>
-        <td>700</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
+      
+        <td>{{ $evenement->libelle }}</td>
+        <td>{{ $evenement->description }}</td>
+        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; "> {{ $evenement->date_evenement }}</p></td>
+        <td>{{$evenement->nombre_place}}</td>
       </tr>
-      <tr>
-        <td>Hachaton</td>
-        <td>graduation day</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; "> 21/12/2024</p></td>
-        <td>700</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-      <tr>
-        <td>Hachaton</td>
-        <td>graduation day</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; "> 21/12/2024</p></td>
-        <td>700</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-      <tr>
-        <td>Hachaton</td>
-        <td>graduation day</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; "> 21/12/2024</p></td>
-        <td>700</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-
+      @endforeach
 
     </tbody>
   </table>
@@ -73,5 +53,6 @@
         }
   </style>
 
+@endsection
 
 </html>
