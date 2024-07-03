@@ -26,7 +26,7 @@
     </div>
 </div>
  <div class="All-info">
-@if (Auth()->)
+@if (Auth()->user())
 <form action="{{ route('reserver') }}" method="POST">
     @csrf
     <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
