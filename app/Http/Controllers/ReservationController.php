@@ -19,7 +19,7 @@ class ReservationController extends Controller
     public function index()
     {
 
-        
+
 
         $user = Auth::user();
         $association = $user->association;
@@ -81,9 +81,8 @@ class ReservationController extends Controller
     }
     public function reserver(Request $request)
     {
-        
+
         $reservation = Reservation::create($request->all());
-        
         $reservation = Reservation::findOrFail($reservation->id);
         $reservation->statut = 'acceptée';
         $reservation->save();
@@ -96,4 +95,4 @@ class ReservationController extends Controller
 
 
 
-    
+
