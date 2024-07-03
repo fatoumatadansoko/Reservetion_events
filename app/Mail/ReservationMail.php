@@ -20,7 +20,7 @@ class ReservationMail extends Mailable
         $this->reservation = $reservation;
         $this->evenement = $evenement;
         $this->user=$user;
-       
+
     }
 
     public function build()

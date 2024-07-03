@@ -6,12 +6,13 @@
     box-sizing: border-box;
 }
 
-.baniere{
+.baniere1{
     width: 100%;
     height: 31rem;
     padding: 2rem;
     background-color:#0D4C9B ;
 }
+
 .conteneur{
     display: flex;
     justify-content: space-around;
