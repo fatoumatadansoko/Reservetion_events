@@ -20,7 +20,7 @@ class ReservationController extends Controller
     public function index()
     {
 
-        
+
 
         $user = Auth::user();
         $association = $user->association;
@@ -83,14 +83,14 @@ class ReservationController extends Controller
     }
     public function reserver(Request $request)
     {
-        
+
         $reservation = Reservation::create($request->all());
         $reservation = Reservation::findOrFail($reservation->id);
         $reservation->statut = 'acceptée';
         $reservation->save();
 
         $evenement = Evenement::findOrFail($reservation->evenementli_id);
-        
+
         Mail::to(Auth::user()->email)->send(new ReservationMail($reservation, $evenement, Auth::user()));
 
     return back()->with('message', 'Réservation effectuée avec succès.');
@@ -99,4 +99,4 @@ class ReservationController extends Controller
 
 
 
-    
+

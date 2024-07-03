@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\TesteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\AssociationController;
