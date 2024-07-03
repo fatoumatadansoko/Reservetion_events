@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Evenement;
 use App\Models\Reservation;
+use App\Models\Utilisateur;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use App\Mail\ReservationMail;
 use App\Http\Controllers\Controller;
-use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\Reservation_approbation;
 
 
 class ReservationController extends Controller
@@ -20,7 +22,7 @@ class ReservationController extends Controller
     public function index()
     {
 
-        
+
 
         $user = Auth::user();
         $association = $user->association;
@@ -83,20 +85,35 @@ class ReservationController extends Controller
     }
     public function reserver(Request $request)
     {
-        
+
         $reservation = Reservation::create($request->all());
-        $reservation = Reservation::findOrFail($reservation->id);
+        $reservation = Reservation::find($reservation->id);
         $reservation->statut = 'acceptée';
         $reservation->save();
+        $evenement = Evenement::find($reservation->evenement_id);
 
-        $evenement = Evenement::findOrFail($reservation->evenementli_id);
-        
-        Mail::to(Auth::user()->email)->send(new ReservationMail($reservation, $evenement, Auth::user()));
+        $user = Auth::user();
+        Mail::to(Auth::user()->email)->send(new Reservation_approbation($reservation, $evenement,$user, Auth::user()));
 
-    return back()->with('message', 'Réservation effectuée avec succès.');
+    return redirect()->back()->with('message', 'Réservation effectuée avec succès.');
 }
+
+public function reserverdécliné(Request $request)
+{
+    $reservation = Reservation::create($request->all());
+    $reservation = Reservation::find($reservation->id);
+    $reservation->statut = 'décliné';
+    $reservation->save();
+    $evenement = Evenement::find($reservation->evenement_id);
+
+    $user = Auth::user();
+    Mail::to(Auth::user()->email)->send(new Reservation_approbation($reservation, $evenement,$user, Auth::user()));
+
+return redirect()->back()->with('message', 'Réservation effectuée avec succès.');
+}
+
 }
 
 
 
-    
+

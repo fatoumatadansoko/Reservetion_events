@@ -274,13 +274,12 @@
 </head>
 <body>
   @include('layouts.navbar')
-  
-  <div class="container">
+
     @yield('content')
-  </div>
+
 
   @include('layouts.footer')
-  
+
   <!-- SVG Symbols -->
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="bootstrap" viewBox="0 0 118 94">

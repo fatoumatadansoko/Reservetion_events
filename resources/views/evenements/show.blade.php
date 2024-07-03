@@ -10,6 +10,9 @@
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+@extends('layouts.home')
+@section('content')
+
 
 <div class="baniere">
     <div class="baniere_element  ">
@@ -22,20 +25,35 @@
        </div>
     </div>
 </div>
+ <div class="All-info">
 
+
+@if ($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists())
+    <p class="resultat_validation" style="color:#0D4C9B">
+        Réservation :<br>
+        Confirmée:
+        <i class="fa-solid fa-circle-check" style="color:#0D4C9B"></i>
+        <i class="fa-solid fa-badge-check" style="background-color: #0D4C9B"></i>
+    </p>
+@elseif ($evenement && $evenement->reservations()->where('statut', 'decliné')->exists())
+    <p class="resultat_validation" style="color:#0D4C9B">
+        Réservation :<br>
+        Annulée:
+        <i class="fa-solid fa-circle-xmark" style="color: #b20a0a;"></i>
+    </p>
+@else
 <form action="{{ route('reserver') }}" method="POST">
     @csrf
     <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
-    <input type="hidden" name="statut" value="acceptée">
-    <input type="hidden" name="utilisateur_id" value="{{ auth()->user()->utilisateur->id}}">
+    <input type="hidden" name="utilisateur_id" value="{{ auth()->user()->utilisateur->id }}">
     <button type="submit" class="btn_reserve">Réserver</button>
 </form>
-<div class="container All-info  ">
+@endif
     <h1  class="info_titre " >Informations principales:</h1>
 
-    <section class="block_info" >
+    <section class="block_info">
     <h1 class="info_titre">  </h1>
-    <div class="box-info d-flex ">
+    <div class="box-info d-flex">
         <img  src="{{asset('img/Place Marker.png')}}" alt=""> <p><strong>Lieu:</strong> {{ $evenement->lieu }}</p>
     </div>
     <div class="box-info d-flex ">
@@ -50,14 +68,16 @@
 
     </section>
 
-</div>
+
 <div class="desc">
     <h1  class="info_titre">Descriptions:</h1>
     <p class="text-desc">
         {{ $evenement->description }}
     </p>
 </div>
+</div>
 
+@endsection
 </body>
 </html>
 
