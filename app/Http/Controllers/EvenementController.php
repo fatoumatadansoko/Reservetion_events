@@ -14,11 +14,14 @@ class EvenementController extends Controller
     {
         $associations = Association::all();
         $evenements = Evenement::all();
-        return view('evenements.index', compact('evenements','associations'));
+        return view('evenements.index', compact('evenements', 'associations'));
     }
 
     public function create()
     {
+        if (auth()->user()->role->name === 'association' && !auth()->user()->is_active) {
+            abort(403, 'Votre compte est désactivé. Vous ne pouvez pas créer d\'événements.');
+        }
         $associations = Association::all();
         return view('evenements.index', compact('associations'));
     }
@@ -54,39 +57,39 @@ class EvenementController extends Controller
 
 
     public function show(Evenement $evenement)
-    {
+    {   $evenement->load('reservations');
         $evenement->load('association');
         return view('evenements.show', compact('evenement'));
     }
 
 
     public function edit(Evenement $evenement)
-{
-    $associations = Association::all();
-    return view('evenements.edit', compact('evenement', 'associations'));
-}
-
-
-public function update(StoreEvenementRequest $request, Evenement $evenement)
-{
-    $data = $request->all();
-    if ($request->hasFile('photo')) {
-        // Supprimer l'ancienne photo
-        if ($evenement->photo) {
-            Storage::delete('public/photos/' . $evenement->photo);
-        }
-
-        // Stocker la nouvelle photo
-        $file = $request->file('photo');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('photos', $filename, 'public');
-        $data['photo'] = basename($path);
+    {
+        $associations = Association::all();
+        return view('evenements.edit', compact('evenement', 'associations'));
     }
 
-    $evenement->update($data);
 
-    return redirect()->route('associations.index')->with('success', 'Événement mis à jour avec succès.');
-}
+    public function update(StoreEvenementRequest $request, Evenement $evenement)
+    {
+        $data = $request->all();
+        if ($request->hasFile('photo')) {
+            // Supprimer l'ancienne photo
+            if ($evenement->photo) {
+                Storage::delete('public/photos/' . $evenement->photo);
+            }
+
+            // Stocker la nouvelle photo
+            $file = $request->file('photo');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('photos', $filename, 'public');
+            $data['photo'] = basename($path);
+        }
+
+        $evenement->update($data);
+
+        return redirect()->route('associations.index')->with('success', 'Événement mis à jour avec succès.');
+    }
 
 
     public function destroy(Evenement $evenement)
@@ -98,5 +101,10 @@ public function update(StoreEvenementRequest $request, Evenement $evenement)
     {
         $evenements = Evenement::all();
         return view('evenements.liste', compact('evenements'));
+    }
+
+    public function listeEvents(){
+        $evenements = Evenement::all();
+        return view('associations/liste_event', compact('evenements'));
     }
 }

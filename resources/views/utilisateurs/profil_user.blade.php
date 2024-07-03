@@ -10,13 +10,11 @@
   </head>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-@extends('layouts.home')
-@section('content')
-    
 
-<div class="baniere">
- <div class="conteneur">
-   <div class="photo">
+    <div class="baniere1">
+    <div class="conteneur">
+    <div class="photo">
+
     <img src="{{ asset('storage/' . $utilisateur->user->photo) }}" class="photoprofil" alt="Photo de profil">
     <form action="{{ route('user.updatePhoto') }}" method="post" style="display: flex; flex-direction:column; gap-1" enctype="multipart/form-data">
       @csrf
@@ -24,11 +22,10 @@
         <input class="btn" type="file"  value="{{$utilisateur->user->photo}}" name="photo">
         <button type="submit" class="btn btn-light " style="color:#0D4C9B; margin: 1rem 0rem"> Modifier Profile</button>
     </form>
-
-</div>
+    </div>
    <div class="cont-form">
 
-    <form action="{{route('utilisateur.update',$utilisateur)}}" method="POST" class="d-flex flex-wrap">
+    <form action="{{route('utilisateur.update',$utilisateur)}}" method="POST" class=" d-flex flex-wrap">
         @csrf
         @method('PUT')
    <div class="box-form">
@@ -56,14 +53,9 @@
     <i class="fa-solid fa-phone" style="color: #fff;"></i>
     <input class=" rounded-2" type="text" value="{{$utilisateur->user->telephone}}" name="telephone">
 </div>
-
 <p class="d-flex"> Vous pouvez modifier directement en cas d’erreurs</p>
-
-
 <button type="submit" class="btn ">Modifier</button>
     </form>
-
-
  </div>
  </div>
 </div>

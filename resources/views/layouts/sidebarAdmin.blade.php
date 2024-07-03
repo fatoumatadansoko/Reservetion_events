@@ -39,11 +39,12 @@
                     <div class="nav_list">
                         <a href="{{ route('dashboard') }}" class="nav_link active"> <i class='bx bx-home nav_icon'></i> <span
                                 class="nav_name">Tabeau de bord</span> </a>
-                        <a href="{{route('')}}" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
+
+                        <a href="{{ route('users.index') }}" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
                                 class="nav_name">Gestion utilisateur</span> </a>
-                        <a href="#" class="nav_link"> <i class='bx bxs-business nav_icon'></i> <span
+                        <a href="{{ route('liste.association') }}" class="nav_link"> <i class='bx bxs-business nav_icon'></i> <span
                                 class="nav_name">Gestion association</span> </a>
-                        <a href="#" class="nav_link"> <i class='bx bx-calendar-check nav_icon'></i> <span
+                        <a href="{{ route('liste.events') }}" class="nav_link"> <i class='bx bx-calendar-check nav_icon'></i> <span
                                 class="nav_name">Liste evenements</span> </a>
                         <a href="#" class="nav_link"><i class='bx bx-cog nav_icon'></i> <span
                                 class="nav_name">Parametre</span> </a>
