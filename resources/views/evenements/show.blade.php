@@ -26,9 +26,16 @@
     </div>
 </div>
  <div class="All-info">
+@if (Auth()->)
+<form action="{{ route('reserver') }}" method="POST">
+    @csrf
+    <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
+    <input type="hidden" name="utilisateur_id" value="{{ auth()->user()->utilisateur->id }}">
+    <button type="submit" class="btn_reserve">Réserver</button>
+</form>
 
 
-@if ($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists())
+@elseif($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists())
     <p class="resultat_validation" style="color:#0D4C9B">
         Réservation :<br>
         Confirmée:
