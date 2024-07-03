@@ -23,6 +23,10 @@
        </div>
     </div>
 </div>
+<!-- image de décoration -->
+<img src="{{asset('')}}" alt="">
+<!-- Fin image de décoration -->
+<div class="All-info"   >
 @if ($evenement && $evenement->reservations()->where('statut', '')->exists())
 <form action="{{ route('reserver') }}" method="POST">
     @csrf
@@ -31,8 +35,6 @@
     <button type="submit" class="btn_reserve">Réserver</button>
 </form>
 @endif
-
-
 
 @if ($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists())
     <p class="resultat_validation" style="color:#0D4C9B">
@@ -67,9 +69,7 @@
     <div class="box-info d-flex ">
         <img  src="{{asset('img/Standing Man.png')}}" alt=""> <p><strong>Nombre de place limité:</strong> {{ $evenement->nombre_place }} </p>
     </div>
-
     </section>
-
 
 <div class="desc">
     <h1  class="info_titre">Descriptions:</h1>

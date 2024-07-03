@@ -54,7 +54,7 @@ margin-right: 8rem;
     height: 12.5rem;
 }
 .All-info{
-padding: 0rem 20rem;
+padding: 2rem 15rem;
 }
 .block_info{
     margin: 2rem;
@@ -138,7 +138,6 @@ padding: 0.5rem;
 
    .titre_baniere{
     font-size: 1.30rem;
-
    }
 
    .nom_association{
@@ -149,8 +148,9 @@ padding: 0.5rem;
     width: 100%;
    }
    .All-info{
-    margin: 0.5rem;
-   }
+    padding: 1rem;
+    }
+    
    .info_titre{
     font-size: 1.25rem;
     margin-top: 2rem;
