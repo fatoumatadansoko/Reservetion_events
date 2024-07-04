@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreEvenementRequest;
+use App\Models\Utilisateur;
 
 class EvenementController extends Controller
 {
@@ -125,4 +126,13 @@ class EvenementController extends Controller
         $evenements = Evenement::all();
         return view('associations/liste_event', compact('evenements'));
     }
+    public function reservation()
+    {
+        $utilisateurs = Utilisateur::all();
+        $associations = Association::all();
+        $evenements = Evenement::all();
+        $reservations = Reservation::all();
+        return view('associations.reservation', compact('evenements', 'associations', 'reservations', 'utilisateurs'));
+    }
+
 }

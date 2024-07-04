@@ -39,7 +39,7 @@
                     <div class="nav_list">
                         <a href="{{ route('dashboardAssociation') }}" class="nav_link active"> <i class='bx bx-home nav_icon'></i> <span
                                 class="nav_name">Tabeau de bord</span> </a>
-                        <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
+                        <a href="{{route('reservation')}}" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
                                 class="nav_name">Gestion reservation</span> </a>
                         <a href="{{route('associations.index')}}" class="nav_link"> <i class='bx bx-calendar-check nav_icon'></i> <span
                                 class="nav_name">Gestion evenements</span> </a>

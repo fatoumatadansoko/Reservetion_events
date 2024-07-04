@@ -127,6 +127,7 @@
                     </tr>
                 @endforeach
             </tbody>
+            {{-- @include('vendor.pagination.bootstrap-5') --}}
         </table>
     </div>
 @endsection
