@@ -41,8 +41,9 @@ Route::middleware('association')->group(function () {
     Route::get('reservation_person/{evenement_id}/reservations', [ReservationController::class, 'liste_person_reserve_events']);
 
     Route::post('/reserverdecline', [ReservationController::class, 'reserverdecline'])->name('reserverdecline');
-});
 
+});
+Route::get('/detail_event/{id}',[AssociationController::class,'detail_event'])->name('detail_event');
 
 // Routes pour l'utilisateur
 Route::middleware('utilisateur')->group(function () {

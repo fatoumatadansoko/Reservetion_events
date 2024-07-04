@@ -38,6 +38,7 @@ class AssociationController extends Controller
     }
     // Controller
 
+
     public function toggleAssociationStatus($id)
     {
         $association = Association::find($id);
@@ -47,6 +48,13 @@ class AssociationController extends Controller
         return redirect()->back()->with('success', 'Le statut de l\'association a été mis à jour.');
     }
 
+    public function detail_event($id){
+        $evenement = Evenement::findOrFail($id);
+
+        return view ('associations.detail_event',compact('evenement'));
+    }
+
+   
     /**
      * Show the form for creating a new resource.
      */

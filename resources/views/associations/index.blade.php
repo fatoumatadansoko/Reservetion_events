@@ -123,7 +123,7 @@
                     <td>{{ $evenement->nombre_place }}</td>
                     <td>
                         <a data-bs-toggle="modal" data-bs-target="#exampleModal1" href="{{ route('evenements.edit', $evenement->id) }}" class="btn "  style="background-color: #0D4C9B"><i class='bx bx-edit-alt' style="color: #fff"></i></a>
-                        <a href="{{ route('evenements.show', $evenement->id) }}" class="btn " style="background-color: #0D4C9B"><i class="fa-regular fa-eye"  style="color: #fff"></i></a>
+                        <a href="detail_event/{{$evenement->id}}" class="btn " style="background-color: #0D4C9B"><i class="fa-regular fa-eye"  style="color: #fff"></i></a>
                         <form action="{{ route('evenements.destroy', $evenement->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
