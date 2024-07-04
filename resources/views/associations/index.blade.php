@@ -122,13 +122,14 @@
                     </td>
                     <td>{{ $evenement->nombre_place }}</td>
                     <td>
-                        <a data-bs-toggle="modal" data-bs-target="#exampleModal1" href="{{ route('evenements.edit', $evenement->id) }}" class="btn btn-success"><i class='bx bx-edit-alt'></i></a>
-                        <a href="{{ route('evenements.show', $evenement->id) }}" class="btn btn-warning"><i class="fa-regular fa-eye"></i></a>
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModal1" href="{{ route('evenements.edit', $evenement->id) }}" class="btn "  style="background-color: #0D4C9B"><i class='bx bx-edit-alt' style="color: #fff"></i></a>
+                        <a href="{{ route('evenements.show', $evenement->id) }}" class="btn " style="background-color: #0D4C9B"><i class="fa-regular fa-eye"  style="color: #fff"></i></a>
                         <form action="{{ route('evenements.destroy', $evenement->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"><i class='bx bx-trash'></i></button>
                         </form>
+                        <a href="reservation_person/{{$evenement->id}}/reservations" class="btn " style="background-color: #0D4C9B"><i class="fa-solid fa-users-gear"  style="color: #fff"></i></a>
                     </td>
                 </tr>
                 @endforeach

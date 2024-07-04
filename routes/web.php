@@ -75,3 +75,6 @@ Route::post('/reservations/{idee}/reject', [ReservationController::class, 'rejec
 
 //la route pour la liste des réservations
 Route::get('reservation_person/{evenement_id}/reservations',[ReservationController::class,'liste_person_reserve_events']);
+
+
+Route::post('/reserverdecline', [ReservationController::class, 'reserverdecline'])->name('reserverdecline');
