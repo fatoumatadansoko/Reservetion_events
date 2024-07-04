@@ -17,15 +17,24 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 </body>
-
-<!-- resources/views/users/index.blade.php -->
+            <!-- resources/views/users/index.blade.php -->
 
 @extends('layouts.sidebarAdmin')
 
 @section('content')
     <div class="container">
         <h1>Liste des Utilisateurs</h1>
+ <!-- Afficher les informations de l'événement -->
+<h1 class="text-center m-2">liste de l'evenement {{ $evenement->libelle}}</h1>
 
+
+<!-- Afficher la liste des réservations -->
+<h2>Liste des réservations</h2>
+<ul>
+
+
+
+</ul>
         <table class="table" style="font-size: 0.875rem; font-family: 'Open Sans';">
             <thead>
                 <tr>
@@ -55,7 +64,7 @@
                                 data-bs-target="#editUserModal{{ $user->id }}">
                                 Éditer
                             </button>
-                           
+
                             <div class="modal fade" id="editUserModal{{ $user->id }}" tabindex="-1"
                                 aria-labelledby="editUserModalLabel{{ $user->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -134,27 +143,43 @@
 
 {{-- <table class="table" style="font-size:0.875rem ; font-family: 'opens sans' ;">
 
+
+<!-- Afficher la liste des réservations -->
+<h2>Liste des réservations</h2>
+<ul>
+
+
+
+</ul>
     <thead>
 
- 
+
 
     </thead>
     <tbody>
-      <tr>
-        <td>Amadou</td>
-        <td>Barro</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; ">barro@gmail.com</p></td>
-        <td>70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-      <tr>
-        <td>Amadou</td>
-        <td>Barro</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; ">barro2024@gmail.com</p></td>
-        <td>70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
 
+        @foreach ($evenement->reservations as $reservation)
+        <tr>
+            <td>{{ $reservation->utilisateur->prenom }}</td>
+            <td>{{ $reservation->utilisateur->user->nom }}</td>
+            <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; ">{{$reservation->utilisateur->user->email}}</p></td>
+            <td>{{ $reservation->utilisateur->user->telephone}}</td>
+            <td>    @if ($reservation->statut === 'declinée')
+                <h5>Déjà décliné</h5>
+            @else
+            <form action="{{ route('reserverdecline') }}" method="POST">
+                @csrf
+                <input type="hidden" name="libelle_evenement" value="{{ $evenement->libelle}}">
+                <input type="hidden" name="email" value="{{ $reservation->utilisateur->user->email}}">
+                   <input type="hidden" name="prenom" value="{{ $reservation->utilisateur->prenom}}">
+                   <input type="hidden" name="nom" value="{{ $reservation->utilisateur->user->nom}}">
+                     <input type="hidden" name="email" value="{{ $reservation->utilisateur->user->email}}">
+                <input type="hidden" name="id" value="{{ $reservation->id }}">
+               <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
+               <input type="hidden" name="utilisateur_id" value="{{ $reservation->utilisateur_id }}">
+               <button type="submit" class="btn btn-danger">Décliner</button>
+           </form>
+            @endif
 
 
     </tbody>

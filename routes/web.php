@@ -64,6 +64,8 @@ Route::delete('/users/{id}', [UtilisateurController::class, 'destroy'])->name('u
 
 Route::post('/reserver', [ReservationController::class, 'reserver'])->name('reserver');
 
+Route::post('/reserverdecline', [ReservationController::class, 'reserverdecline'])->name('reserverdecline');
+
 Route::resource('utilisateur', UtilisateurController::class);
 
 //la route pour update photo profile

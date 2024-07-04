@@ -14,12 +14,13 @@ class Reservation extends Model
         'utilisateur_id',
 
     ];
-    public function utilisateur()
-    {
-        return $this->hasMany(Utilisateur::class);
-    }
+     // Relation avec l'utilisateur
+     public function utilisateur()
+     {
+         return $this->belongsTo(Utilisateur::class, 'utilisateur_id');
+     }
     public function evenement()
     {
-        return $this->belongsTo(Evenement::class);
+        return $this->belongsTo(Evenement::class,'evenement_id');
     }
 }

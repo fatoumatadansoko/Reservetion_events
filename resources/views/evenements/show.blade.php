@@ -35,6 +35,39 @@
 </form>
 
 
+<<<<<<< HEAD
+    @if($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists() && Auth::user()->roles()->where('name','user')->exists() )
+        <p class="resultat_validation" style="color:#0D4C9B">
+            Réservation :<br>
+            Confirmée:
+            <i class="fa-solid fa-circle-check" style="color:#0D4C9B"></i>
+            <i class="fa-solid fa-badge-check" style="background-color: #0D4C9B"></i>
+        </p>
+    @elseif ($evenement && $evenement->reservations()->where('statut', 'declinée')->exists())
+        <p class="resultat_validation" style="color:#0D4C9B">
+            Réservation :<br>
+            Annulée:
+            <i class="fa-solid fa-circle-xmark" style="color: #b20a0a;"></i>
+        </p>
+    @elseif($evenement && $evenement->reservations()->where('statut', '')->exists())
+        <form action="{{ route('reserver') }}" method="POST">
+            @csrf
+            <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
+
+            <button type="submit" class="btn_reserve">Réserver</button>
+        </form>
+        @elseif (Auth::check() && Auth::user()->association)
+        @php
+            $associationUserId = Auth::user()->association->user_id;
+        @endphp
+
+        @if ($associationUserId)
+
+    @endif
+    @endif
+
+
+=======
 @elseif($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists())
     <p class="resultat_validation" style="color:#0D4C9B">
         Réservation :<br>
@@ -56,6 +89,7 @@
     <button type="submit" class="btn_reserve">Réserver</button>
 </form>
 @endif
+>>>>>>> a8e3b865f8e4142d5a8121760a1600dda442bf26
     <h1  class="info_titre " >Informations principales:</h1>
 
     <section class="block_info">
