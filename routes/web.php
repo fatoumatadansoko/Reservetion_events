@@ -11,9 +11,9 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 
 
-Route::get('/', [EvenementController::class, 'index'])->name('accueil');
-Route::resource('evenements', EvenementController::class)->only(['index', 'show']);
-Route::get('liste', [EvenementController::class, 'liste'])->name('liste');
+Route::get('/', [EvenementController::class, 'index'])->middleware('userSeul')->name('accueil');
+Route::resource('evenements', EvenementController::class)->only(['index', 'show'])->middleware('userSeul');
+Route::get('liste', [EvenementController::class, 'liste'])->name('liste')->middleware('userSeul');
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
 
