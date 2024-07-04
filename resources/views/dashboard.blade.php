@@ -1,4 +1,3 @@
-use App\Models\Evenement;
 {{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -25,7 +24,7 @@ use App\Models\Evenement;
                         {{ $totalEvenements }}
                     </div>
                 </div>
-                <h6>Évenements au total</h6>
+                <h6 style="color: black" >Évenements au total</h6>
             </li>
             <li class="step text-center">
                 <div class="d-flex flex-column align-items-center">
@@ -35,7 +34,7 @@ use App\Models\Evenement;
                         {{ $totalEvenements }}
                     </div>
                 </div>
-                <h6>Évenements au total</h6>
+                <h6 style="color: black;">Évenements au total</h6>
             </li>
             <li class="step text-center">
                 <div class="d-flex flex-column align-items-center">
@@ -45,7 +44,7 @@ use App\Models\Evenement;
                         {{ $totalAssociations }}
                     </div>
                 </div>
-                <h6>Associations au total</h6>
+                <h6 style="color: black">Associations au total</h6>
             </li>
         </ul>
     </div>
