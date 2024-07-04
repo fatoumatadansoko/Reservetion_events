@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Evenement;
 use App\Models\Association;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreEvenementRequest;
 
@@ -19,7 +21,7 @@ class EvenementController extends Controller
 
     public function create()
     {
-        if (auth()->user()->role->name === 'association' && !auth()->user()->is_active) {
+        if (auth()->user()->HasRole('association')  && !auth()->user()->is_active) {
             abort(403, 'Votre compte est désactivé. Vous ne pouvez pas créer d\'événements.');
         }
         $associations = Association::all();
@@ -56,10 +58,22 @@ class EvenementController extends Controller
 
 
 
-    public function show(Evenement $evenement)
-    {   $evenement->load('reservations');
-        $evenement->load('association');
-        return view('evenements.show', compact('evenement'));
+    public function show($id)
+    {
+
+        $evenement = Evenement::findOrFail($id);
+        $reserveé = null;
+
+        if (auth()->check()) {
+            $reserveé = Reservation::where('evenement_id', $evenement->id)
+                                   ->where('utilisateur_id', auth()->user()->id)
+                                   ->first();
+        }
+
+        return view('evenements.show', compact('evenement', 'reserveé'));
+        // $evenement->load('reservations');
+        // $evenement->load('association');
+        // return view('evenements.show', compact('evenement'));
     }
 
 
@@ -103,7 +117,8 @@ class EvenementController extends Controller
         return view('evenements.liste', compact('evenements'));
     }
 
-    public function listeEvents(){
+    public function listeEvents()
+    {
         $evenements = Evenement::all();
         return view('associations/liste_event', compact('evenements'));
     }

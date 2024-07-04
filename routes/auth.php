@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\Auth\PasswordController;
@@ -13,18 +14,23 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
+
+// Enregistrement du middleware avec un alias
+Route::middleware('role', AdminMiddleware::class);
+
 Route::middleware('guest')->group(function () {
 
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
-    // Route::post('register', [RegisteredUserController::class, 'store']);
-
+ //connexion
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
+
+    // reset mot de passe
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
 
@@ -38,11 +44,16 @@ Route::middleware('guest')->group(function () {
                 ->name('password.store');
 });
 
+//middleware
 Route::middleware('auth')->group(function () {
 
     Route::get('index',[UtilisateurController::class, 'indexUser'])->name('index');
+
+    //dashbord association
     Route::get('dashboardAssociation',[AssociationController::class, 'dashboardAssociation'])->name('dashboardAssociation');
-    Route::get('index',[UtilisateurController::class, 'index'])->name('index');
+
+    //
+    // Route::get('index',[UtilisateurController::class, 'index'])->name('index');
 
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');

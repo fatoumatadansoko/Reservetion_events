@@ -32,13 +32,14 @@
 
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
-                <div> <a href="#" class="nav_logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+                <div> <a href="{{route('dashboard')}}" class="nav_logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
                     <div class="nav_list">
 
                     </div>
                     <div class="nav_list">
                         <a href="{{ route('dashboard') }}" class="nav_link active"> <i class='bx bx-home nav_icon'></i> <span
                                 class="nav_name">Tabeau de bord</span> </a>
+
                         <a href="{{ route('users.index') }}" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
                                 class="nav_name">Gestion utilisateur</span> </a>
                         <a href="{{ route('liste.association') }}" class="nav_link"> <i class='bx bxs-business nav_icon'></i> <span

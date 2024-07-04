@@ -19,7 +19,7 @@ class AdminController extends Controller
         $totalUsers = Utilisateur::count();
         $totalEvenements = Evenement::count();
         $totalAssociations = Association::count();
-
+        
         return view('dashboard', compact('totalUsers', 'totalEvenements', 'totalAssociations'));
     }
 
