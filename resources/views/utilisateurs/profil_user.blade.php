@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
-  
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 @extends('layouts.home')
 @section('content')
@@ -25,8 +25,7 @@
     </form>
     </div>
    <div class="cont-form">
-
-    <form action="{{route('utilisateur.update',$utilisateur)}}" method="POST" class=" d-flex flex-wrap">
+    <form action="{{route('utilisateur.update',$utilisateur)}}" method="POST" class=" ">
         @csrf
         @method('PUT')
    <div class="box-form">
@@ -54,9 +53,12 @@
     <i class="fa-solid fa-phone" style="color: #fff;"></i>
     <input class=" rounded-2" type="text" value="{{$utilisateur->user->telephone}}" name="telephone">
 </div>
-<p class="d-flex"> Vous pouvez modifier directement en cas d’erreurs</p>
-<button type="submit" class="btn ">Modifier</button>
+<br>
+<p class="text-consigne"> Vous pouvez modifier directement en cas d’erreurs </p>
+<br>
+<button type="submit" class="btn btn-light ">Modifier</button>
     </form>
  </div>
  </div>
 </div>
+@endsection

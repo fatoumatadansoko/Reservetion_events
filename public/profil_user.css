@@ -15,7 +15,8 @@
 
 .conteneur{
     display: flex;
-    justify-content: space-around;
+    width: 100%;
+    gap: 5rem;
     color: #fff;
     max-height:23.75rem ;
 }
@@ -41,16 +42,17 @@
   object-fit: cover;
 }
 .cont-form{
-    width: 60%;
-    display: flex;
+width: 70%;
 }
 .cont-form form{
-    max-height:23.75rem ;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2,2fr);
+    gap:2rem;
 }
 .box-form{
     width: 26rem;
 }
+
 .box-form input{
     color: #fff;
     border: #fff solid 0.1rem;
@@ -62,9 +64,9 @@
 .cont-form p{
    font-weight: 400;
     font-size: 1.2rem;
-    width: 100%;
+
 }
-.cont-form button {
+.cont-form form button {
 
     background-color: #fff;
     color: #0D4C9B;
@@ -72,13 +74,22 @@
     font-size: 1.2rem;
     font-weight: 400;
     margin:  -01.5rem 0;
-}
+    width: 8rem;
 
+}
+.text-consigne{
+    display: inline-block; /* Force l'élément à se comporter comme un élément en ligne, mais permet de définir une largeur et une hauteur */
+    white-space: nowrap; /* Empêche le texte de se retourner sur plusieurs lignes */
+
+    text-overflow: ellipsis; /* Affiche des points de suspension (...) lorsque le texte dépasse la largeur définie */
+    width: 100%;
+}
 /* la patie responsive mobile */
 
 @media (max-width: 480px) {
-.baniere{
-    height: 64rem;
+.baniere1{
+    height: 70rem;
+    padding: 0.5rem;
 }
 
 .conteneur{
@@ -87,23 +98,37 @@
     align-items: center;
     padding: 0.8rem;
 }
+.cont-form form{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 0.5rem;
+}
 .conteneur .photo{
     display: flex;
     flex-direction: column;
     gap:1rem ;
+    margin:  0.5rem;
 }
 .photoprofil{
-    width: 7.8rem;
-    height: 7.8rem;
+    width: 10.8rem;
+    height: 10.8rem;
 
 }
 .cont-form{
     width: 20rem;
-margin: 02rem 00;
+    margin-left: 5.75rem;
     align-items: center;
+    margin-top: -3rem;
+    font-size: 1.50rem;
 }
 
+.text-consigne{
+    display: inline-block; /* Force l'élément à se comporter comme un élément en ligne, mais permet de définir une largeur et une hauteur */
+    white-space: wrap; /* Empêche le texte de se retourner sur plusieurs lignes */
 
+    text-overflow: ellipsis; /* Affiche des points de suspension (...) lorsque le texte dépasse la largeur définie */
+    width: 100%;
+}
 
 
 
