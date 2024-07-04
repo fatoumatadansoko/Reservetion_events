@@ -27,17 +27,7 @@
 @section('content')
     <div class="container">
         <h1>Liste des Utilisateurs</h1>
- <!-- Afficher les informations de l'événement -->
-<h1 class="text-center m-2">liste de l'evenement {{ $evenement->libelle}}</h1>
 
-
-<!-- Afficher la liste des réservations -->
-<h2>Liste des réservations</h2>
-<ul>
-
-
-
-</ul>
         <table class="table" style="font-size: 0.875rem; font-family: 'Open Sans';">
             <thead>
                 <tr>

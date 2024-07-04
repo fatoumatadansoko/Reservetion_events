@@ -21,7 +21,7 @@ class SetupAdmin extends Command
             'nom' => 'Admin User',
             'telephone' => '773162001',
             'photo' => 'photos/admin.jpg',
-            'email' => 'admin@  .com', // Changez l'email si nécessaire
+            'email' => 'admin@gmail.com', // Changez l'email si nécessaire
             'password' => bcrypt('123456789'), // Changez le mot de passe si nécessaire
         ]);
         Admin::create([
