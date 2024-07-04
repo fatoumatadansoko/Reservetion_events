@@ -53,4 +53,10 @@
         <button type="submit" class="btn btn-primary">Créer</button>
     </form>
 </div>
+<style>
+    body {
+    font-family: 'Lato', sans-serif;
+}
+
+</style>
 {{-- @endsection --}}

@@ -1,4 +1,7 @@
 
+body {
+    font-family: 'Lato', sans-serif;
+}
 .card {
     position: relative;
     display: flex;

@@ -26,4 +26,10 @@
             </div>
         </div>
     </div>
+    <style>
+        body {
+        font-family: 'Lato', sans-serif;
+    }
+    
+    </style>
 </x-app-layout>

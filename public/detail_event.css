@@ -8,6 +8,9 @@
 body{
     font-family: 'lato';
 }
+body {
+    font-family: 'Lato', sans-serif;
+}
 
 .baniere{
 
@@ -106,6 +109,15 @@ padding: 2rem 13rem;
         text-decoration: none;
        border-radius: 0.4rem;
 }
+.icon-style {
+    color: #0D4C9B;
+    margin-right: 1rem;
+}
+
+.box-info {
+    align-items: center;
+}
+
 /* la partie responsive Mobile
 */
 @media (max-width: 480px) {

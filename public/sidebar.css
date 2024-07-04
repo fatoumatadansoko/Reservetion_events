@@ -131,7 +131,10 @@
                     padding-left: calc(var(--nav-width) + 188px)
                 }
             }
-
+            body {
+                font-family: 'Lato', sans-serif;
+            }
+            
 
 
 .form{

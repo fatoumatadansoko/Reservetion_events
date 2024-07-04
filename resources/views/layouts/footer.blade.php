@@ -1,4 +1,10 @@
 <hr>
+<style>
+  body {
+  font-family: 'Lato', sans-serif;
+}
+
+</style>
 <footer class="bd-footer bg-light">
   <div class="container py-4 py-md-5 px-4 px-md-3">
     <div class="footer-content">

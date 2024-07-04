@@ -161,5 +161,11 @@
             </div>
         </form>
     </div>
+    <style>
+        body {
+        font-family: 'Lato', sans-serif;
+    }
+    
+    </style>
     
 @endsection

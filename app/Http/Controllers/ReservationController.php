@@ -59,7 +59,11 @@ class ReservationController extends Controller
         $evenement = Evenement::findOrFail($id);
         return view('evenements.detail', compact('evenement'));
     }
-
+    public function getReservations()
+    {
+        $reservations = Reservation::all();
+        return response()->json($reservations);
+    }
     /**
      * Show the form for editing the specified resource.
      */

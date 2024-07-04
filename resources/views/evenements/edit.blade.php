@@ -56,4 +56,10 @@
     </form>
     <a href="{{ route('evenements.index') }}" class="btn btn-secondary">Retour</a>
 </div>
+<style>
+    body {
+    font-family: 'Lato', sans-serif;
+}
+
+</style>
 {{-- @endsection --}}
