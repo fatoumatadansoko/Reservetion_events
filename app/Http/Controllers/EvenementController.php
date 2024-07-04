@@ -69,14 +69,17 @@ class EvenementController extends Controller
                                    ->where('utilisateur_id', auth()->user()->id)
                                    ->first();
         }
+        $evenement = Evenement::with('reservations.utilisateur.user')->findOrFail($id);
 
-        return view('evenements.show', compact('evenement', 'reserveé'));
-        // $evenement->load('reservations');
-        // $evenement->load('association');
-        // return view('evenements.show', compact('evenement'));
-    }
+        // Calculer le nombre de réservations acceptées
+        $reservationsAcceptees = $evenement->reservations()->where('statut', 'acceptée')->count();
+    
+        // Calculer le nombre de places disponibles
+        $placesDisponibles = $evenement->nombre_place - $reservationsAcceptees;
+    
+        return view('evenements.show', compact('evenement', 'placesDisponibles'));
 
-
+}
     public function edit(Evenement $evenement)
     {
         $associations = Association::all();

@@ -68,3 +68,5 @@ Route::resource('utilisateur', UtilisateurController::class)->middleware(['auth'
 
 Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->middleware(['auth', 'verified'])->name('reservations.approve');
 Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->middleware(['auth', 'verified'])->name('reservations.reject');
+
+Route::get('/api/reservations', [ReservationController::class, 'getReservations']);
