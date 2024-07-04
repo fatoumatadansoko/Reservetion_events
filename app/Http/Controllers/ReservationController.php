@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Users;
 use App\Models\Evenement;
 use App\Models\Reservation;
 use App\Models\Utilisateur;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use App\Mail\ReservationMail;
-use App\Mail\Reservationdecline;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -86,7 +85,7 @@ class ReservationController extends Controller
     }
     public function reserver(Request $request)
     {
-        $request->merge(['utilisateur_id' => Auth::user()->id]);
+
         $reservation = Reservation::create($request->all());
         $reservation = Reservation::find($reservation->id);
         $reservation->statut = 'acceptée';
@@ -99,34 +98,16 @@ class ReservationController extends Controller
     return redirect()->back()->with('message', 'Réservation effectuée avec succès.');
 }
 
-
-
-public function liste_person_reserve_events($evenement_id)
+public function reserverdécliné(Request $request)
 {
-    // Récupérer les réservations pour l'événement avec les utilisateurs associés
-    $reservations = Reservation::where('evenement_id', $evenement_id)
-    ->with('utilisateur')
-    ->get();
-
-// Optionnel: Récupérer l'événement pour afficher des informations supplémentaires
-$evenement = Evenement::find($evenement_id);
-    return view('associations.liste_utilisateur', compact('reservations', 'evenement'));
-}
-
-public function reserverdecline(Request $request)
-{
-
-    $reservation = Reservation::find($request->id);
-    $reservation->update(['statut' => 'declinée']);
-    $nom = $request->nom;
-    $libelle_evenement = $request->libelle_evenement;
-       $prenom = $request->prenom;
-         $email=$request->email;
+    $reservation = Reservation::create($request->all());
+    $reservation = Reservation::find($reservation->id);
+    $reservation->statut = 'décliné';
+    $reservation->save();
     $evenement = Evenement::find($reservation->evenement_id);
 
-
-
-    Mail::to($email)->send(new Reservationdecline($reservation, $evenement,$nom,$email,$libelle_evenement,$prenom));
+    $user = Auth::user();
+    Mail::to(Auth::user()->email)->send(new Reservation_approbation($reservation, $evenement,$user, Auth::user()));
 
 return redirect()->back()->with('message', 'Réservation effectuée avec succès.');
 }

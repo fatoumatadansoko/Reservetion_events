@@ -34,8 +34,6 @@
     <button type="submit" class="btn_reserve">Réserver</button>
 </form>
 
-
-<<<<<<< HEAD
     @if($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists() && Auth::user()->roles()->where('name','user')->exists() )
         <p class="resultat_validation" style="color:#0D4C9B">
             Réservation :<br>
@@ -67,8 +65,8 @@
     @endif
 
 
-=======
-@elseif($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists())
+
+@if ($evenement && $evenement->reservations()->where('statut', 'acceptée')->exists())
     <p class="resultat_validation" style="color:#0D4C9B">
         Réservation :<br>
         Confirmée:
@@ -89,7 +87,7 @@
     <button type="submit" class="btn_reserve">Réserver</button>
 </form>
 @endif
->>>>>>> a8e3b865f8e4142d5a8121760a1600dda442bf26
+
     <h1  class="info_titre " >Informations principales:</h1>
 
     <section class="block_info">

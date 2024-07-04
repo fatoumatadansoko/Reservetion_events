@@ -64,13 +64,10 @@ Route::delete('/users/{id}', [UtilisateurController::class, 'destroy'])->name('u
 
 Route::post('/reserver', [ReservationController::class, 'reserver'])->name('reserver');
 
-Route::post('/reserverdecline', [ReservationController::class, 'reserverdecline'])->name('reserverdecline');
-
 Route::resource('utilisateur', UtilisateurController::class);
 
 //la route pour update photo profile
 Route::put('updatePhoto',[UtilisateurController::class,'updatePhoto'])->name('user.updatePhoto') ;
-
 
 Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->name('reservations.approve');
 Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
