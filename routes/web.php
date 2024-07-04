@@ -75,3 +75,6 @@ Route::put('updatePhoto',[UtilisateurController::class,'updatePhoto'])->name('us
 Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->name('reservations.approve');
 Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
 
+
+//la route pour la liste des réservations
+Route::get('reservation_person/{evenement_id}/reservations',[ReservationController::class,'liste_person_reserve_events']);
