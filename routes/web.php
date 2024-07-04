@@ -45,7 +45,13 @@ Route::get('liste', [EvenementController::class, 'liste'])->name('liste'); // Ex
 
 Route::post('/reserver', [ReservationController::class, 'reserver'])->name('reserver');
 
+Route::post('/reserverdecline', [ReservationController::class, 'reserverdecline'])->name('reserverdecline');
+
 Route::resource('utilisateur', UtilisateurController::class);
 
 //la route pour update photo profile
 Route::put('updatePhoto',[UtilisateurController::class,'updatePhoto'])->name('user.updatePhoto') ;
+
+//la route pour la liste des réservations
+Route::get('reservation_person/{evenement_id}/reservations',[ReservationController::class,'liste_person_reserve_events']);
+
