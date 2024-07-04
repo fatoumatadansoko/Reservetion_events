@@ -23,7 +23,7 @@
     <ul class="navbar-nav ml-auto">
       @guest
       <li class="nav-item">
-        <a href="{{ route('register') }}" id="seConnecterButton" class="btn btn-connect">Se connecter</a>
+        <a href="{{ route('login') }}" id="seConnecterButton" class="btn btn-connect">Se connecter</a>
       </li>
       @endguest
       @auth

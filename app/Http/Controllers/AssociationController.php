@@ -22,16 +22,30 @@ class AssociationController extends Controller
     {
         $user = Auth::user();
         $association = $user->association;
-    
+
         if (!$association) {
             return redirect()->route('dashboard')->with('error', 'No association linked to this user.');
         }
-    
+
         $evenements = Evenement::where('association_id', $association->id)->get();
-    
+
         return view('associations.index', compact('evenements', 'association'));
     }
-    
+    public function liste_association(){
+        $associations = Association::all();
+        return view('admin.list_association', compact('associations'));
+    }
+    // Controller
+
+public function toggleAssociationStatus($id)
+{
+    $association = Association::find($id);
+    $association->is_active = !$association->is_active;
+    $association->save();
+
+    return redirect()->back()->with('success', 'Le statut de l\'association a été mis à jour.');
+}
+
     /**
      * Show the form for creating a new resource.
      */

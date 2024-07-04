@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Association;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\UtilisateurController;
