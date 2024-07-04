@@ -11,9 +11,10 @@ class UtilisateurMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check() && Auth::user()->hasRole('user')) {
+            
             return $next($request);
         }
 
-        return redirect('/')->with('error', 'Vous n\'avez pas les permissions nécessaires pour accéder à cette page.');
+        abort(401)->with('error', 'Vous n\'avez pas les permissions nécessaires pour accéder à cette page.');
     }
 }

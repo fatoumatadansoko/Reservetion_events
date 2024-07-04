@@ -20,6 +20,6 @@ class AssociationMiddleware
             return $next($request);
         }
 
-        return redirect('/')->with('error', 'Vous n\'avez pas les permissions nécessaires pour accéder à cette page.');
+        abort(401)->with('error', 'Vous n\'avez pas les permissions nécessaires pour accéder à cette page.');
     }
 }

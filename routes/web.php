@@ -11,23 +11,39 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 
 
-Route::get('/', [EvenementController::class,'index'])->name('accueil');
+Route::get('/', [EvenementController::class, 'index'])->name('accueil');
+Route::resource('evenements', EvenementController::class)->only(['index', 'show']); 
+Route::get('liste', [EvenementController::class, 'liste'])->name('liste'); 
+Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
+
+require __DIR__ . '/auth.php';
+
+
 // Routes pour l'admin
 Route::middleware('admin')->group(function () {
-    Route::get('/dashboard',[AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
+    Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/liste_association_Admin', [AssociationController::class, 'liste_association'])->middleware(['auth', 'verified'])->name('liste.association');
+    Route::patch('/admin/associations/{id}/toggle-status', [AssociationController::class, 'toggleAssociationStatus'])->middleware(['auth', 'verified'])->name('toggle.association.status');
+    Route::get('liste.events', [EvenementController::class, 'listeEvents'])->middleware(['auth', 'verified'])->name('liste.events'); 
+    Route::get('/users', [UtilisateurController::class, 'index'])->middleware(['auth', 'verified'])->name('users.index');
+    Route::get('/users/{id}/edit', [UtilisateurController::class, 'editUser'])->middleware(['auth', 'verified'])->name('users.edit');
+    Route::put('/users/{id}', [UtilisateurController::class, 'updateUser'])->middleware(['auth', 'verified'])->name('users.update');
+    Route::delete('/users/{id}', [UtilisateurController::class, 'destroy'])->middleware(['auth', 'verified'])->name('users.delete');
 });
 
 // Routes pour l'association
-Route::group(['middleware' => ['role:association']], function () {
-    Route::resource('reservation', ReservationController::class);
 
+Route::middleware('association')->group(function () {
+    Route::resource('associations', AssociationController::class)->middleware(['auth', 'verified']);
+    Route::resource('evenements', EvenementController::class)->except(['index', 'show']);
 });
 
-// Routes pour l'utilisateur
-Route::group(['middleware' => ['role:user']], function () {
-    Route::resource('reservation', ReservationController::class);
 
+// Routes pour l'utilisateur
+Route::middleware('utilisateur')->group(function () {
+    Route::post('/reserver', [ReservationController::class, 'reserver'])->middleware(['auth', 'verified'])->name('reserver');
+    Route::put('updatePhoto', [UtilisateurController::class, 'updatePhoto'])->name('user.updatePhoto')->middleware(['auth', 'verified']);
 });
 
 
@@ -38,38 +54,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/liste_association_Admin',[AssociationController::class, 'liste_association'])->middleware(['auth', 'verified'])->name('liste.association');
-Route::patch('/admin/associations/{id}/toggle-status', [AssociationController::class, 'toggleAssociationStatus'])->middleware(['auth', 'verified'])->name('toggle.association.status');
-Route::get('liste.events', [EvenementController::class, 'listeEvents'])->middleware(['auth', 'verified'])->name('liste.events'); // Exclure l'index des idées pour éviter la redondance
 
-
-Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
-Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
-
-require __DIR__.'/auth.php';
-
-Route::resource('evenements', EvenementController::class)->middleware(['auth', 'verified']); // Exclure l'index des idées pour éviter la redondance
-Route::get('liste', [EvenementController::class, 'liste']); // Exclure l'index des idées pour éviter la redondance
-Route::resource('associations', AssociationController::class)->middleware(['auth', 'verified']);
-Route::get('liste', [EvenementController::class, 'liste'])->name('liste'); // Exclure l'index des idées pour éviter la redondance
-
-Route::get('/users', [UtilisateurController::class, 'index'])->middleware(['auth', 'verified'])->name('users.index');
-Route::get('/users/{id}/edit', [UtilisateurController::class, 'editUser'])->middleware(['auth', 'verified'])->name('users.edit');
-Route::put('/users/{id}', [UtilisateurController::class, 'updateUser'])->middleware(['auth', 'verified'])->name('users.update');
-Route::delete('/users/{id}', [UtilisateurController::class, 'destroy'])->middleware(['auth', 'verified'])->name('users.delete');
-
-
-
-
-
-Route::post('/reserver', [ReservationController::class, 'reserver'])->middleware(['auth', 'verified'])->name('reserver');
 
 Route::resource('utilisateur', UtilisateurController::class)->middleware(['auth', 'verified']);
 
 //la route pour update photo profile
-Route::put('updatePhoto',[UtilisateurController::class,'updatePhoto'])->name('user.updatePhoto')->middleware(['auth', 'verified']) ;
 
 
 Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->middleware(['auth', 'verified'])->name('reservations.approve');
 Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->middleware(['auth', 'verified'])->name('reservations.reject');
-
