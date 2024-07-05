@@ -22,9 +22,6 @@ class ReservationController extends Controller
      */
     public function index()
     {
-
-
-
         $user = Auth::user();
         $association = $user->association;
         // Récupérer les événements de l'association avec leurs réservations
@@ -59,11 +56,7 @@ class ReservationController extends Controller
         $evenement = Evenement::findOrFail($id);
         return view('evenements.detail', compact('evenement'));
     }
-    public function getReservations()
-    {
-        $reservations = Reservation::all();
-        return response()->json($reservations);
-    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -131,7 +124,7 @@ class ReservationController extends Controller
         $evenement = Evenement::find($evenement_id);
         $reservations = $evenement->reservations()
                                  ->with('utilisateur')
-                                  ->paginate(3) ;
+                                  ->paginate(10) ;
 
 
         return view('associations.liste_reservation', compact('reservations', 'evenement'));

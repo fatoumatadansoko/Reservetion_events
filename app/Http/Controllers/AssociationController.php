@@ -34,7 +34,7 @@ class AssociationController extends Controller
     }
     public function liste_association()
     {
-        $associations = Association::all();
+        $associations = Association::paginate(10);
         return view('admin.list_association', compact('associations'));
     }
     // Controller

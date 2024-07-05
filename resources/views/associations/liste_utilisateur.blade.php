@@ -128,6 +128,9 @@
             </tbody>
             {{-- @include('vendor.pagination.bootstrap-5') --}}
         </table>
+        <div>
+            {{$users->links()}}
+        </div>
         <div class="container">
             <h2>Liste des permissions</h2>
             <a href="{{ route('permissions.create') }}" class="btn btn-primary mb-3">Ajouter une permission</a>

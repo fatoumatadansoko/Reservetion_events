@@ -42,7 +42,9 @@
     </tbody>
   </table>
 
-
+<div>
+    {{$evenements->links()}}
+</div>
   <style>
  hr {
             height: 0.1rem;
