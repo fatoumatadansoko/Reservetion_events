@@ -113,7 +113,7 @@ class EvenementController extends Controller
     }
     public function liste()
     {
-        $evenements = Evenement::all();
+        $evenements = Evenement::paginate(9);
         return view('evenements.liste', compact('evenements'));
     }
 

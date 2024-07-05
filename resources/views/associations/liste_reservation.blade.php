@@ -11,6 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 
+  @extends('layouts.sidebarAssociation')
+@section('content')
+
   <table class="table" style="font-size:0.875rem ; font-family: 'opens sans' ;">
  <!-- Afficher les informations de l'événement -->
 <h1 class="text-center m-2">liste de l'evenement {{ $evenement->libelle}}</h1>
@@ -64,8 +67,16 @@
         </tr>
         @endforeach
          </tbody>
+      
   </table>
+<div>
+    {{$reservations->links()}}
+</div>
 
+
+<div>
+</div>
+<div class="d-flex p-2"></div>
   <style>
 
 
@@ -78,5 +89,5 @@
         }
   </style>
 
-
+@endsection
 </html>

@@ -9,12 +9,12 @@
         <div class="col-md-7 col-12 d-flex justify-content-center mb-3">
           <img src="{{ asset('img/banner.png') }}" alt="Logo" class="imagebanner img-fluid">
         </div>
-        
+
         <!-- Section Trois événements à venir -->
         <div class="col-md-5 col-12 d-flex flex-column align-items-center">
           <div class="card-body">
             <div class="section-title text-center">Trois événements à venir</div>
-            
+
             <div class="text-as-button">
               <h5 class="card-title"><i class="fas fa-calendar-alt icon-calendar"></i>Soirée diar diar</h5>
               <p class="card-text"><small class="text-body-secondary">mardi le 30 mai 2024</small></p>
@@ -30,7 +30,7 @@
           </div>
         </div>
     </div>
-    
+
     <!-- Section À propos -->
     <div class="justify-content-center section-bleu section text-center">
         <div class="container py-5">
@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    
+
     <h2 class="text-center my-4">Nos événements</h2>
     <div class="row">
         @foreach($evenements as $evenement)
@@ -89,10 +89,11 @@
         </div>
         @endforeach
     </div>
+
     <div class="d-flex justify-content-end mt-4">
         <a href="{{ route('liste') }}" class="voirplus">Voir plus</a>
     </div>
-    
+  
     <!-- Carousel Partenaires -->
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -128,7 +129,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
     </div>
-    
+
     <!-- Formulaire de contact -->
     <div class="py-5 formulaire">
         <h3 class="text-center" id="contact">Contactez-nous</h3>
@@ -161,5 +162,5 @@
             </div>
         </form>
     </div>
-    
+
 @endsection

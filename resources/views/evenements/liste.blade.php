@@ -24,6 +24,12 @@
          </a>
           </div>
           @endforeach
+
       </div>
-      
+      <div style=" display: grid;    grid-template-columns: 1fr;    justify-items: end;   ">
+        {{ $evenements->links() }}
+    </div>
+
+
+  
       @endsection

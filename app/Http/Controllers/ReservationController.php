@@ -120,18 +120,19 @@ class ReservationController extends Controller
         return redirect()->back()->with('message', 'Réservation effectuée avec succès.');
     }
 
+    public function liste_person_reserve_events($evenement_id)
+    {
 
-public function liste_person_reserve_events($evenement_id)
-{
-    // Récupérer les réservations pour l'événement avec les utilisateurs associés
-    $reservations = Reservation::where('evenement_id', $evenement_id)
-    ->with('utilisateur')
-    ->get();
+        // Récupérer l'événement
+        $evenement = Evenement::find($evenement_id);
+        $reservations = $evenement->reservations()
+                                 ->with('utilisateur')
+                                  ->paginate(3) ;
 
-// Optionnel: Récupérer l'événement pour afficher des informations supplémentaires
-$evenement = Evenement::find($evenement_id);
-    return view('associations.liste_reservation', compact('reservations', 'evenement'));
-}
+
+        return view('associations.liste_reservation', compact('reservations', 'evenement'));
+    }
+
 
 public function reserverdecline(Request $request)
 {
