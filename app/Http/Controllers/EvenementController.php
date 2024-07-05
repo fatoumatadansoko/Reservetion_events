@@ -31,6 +31,20 @@ class EvenementController extends Controller
 
     public function store(StoreEvenementRequest $request)
     {
+        $request->validate([
+            'libelle' => 'required|string|max:255',
+            'description' => 'required|string',
+            'nombre_place' => 'required|integer|min:1',
+            'lieu' => 'required|string|max:255',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'association_id' => 'required|exists:associations,id',
+            'date_evenement' => 'required|date|after_or_equal:today',
+            'date_limite_inscription' => 'required|date|after_or_equal:today',
+        ], [
+            'date_evenement.after_or_equal' => 'La date de l\'événement doit être égale ou postérieure à la date actuelle.',
+            'date_limite_inscription.after_or_equal' => 'La date limite d\'inscription doit être égale ou postérieure à la date actuelle.'
+        ]);
+        
         $photo = null;
 
         // Vérifier si un fichier photo est uploadé

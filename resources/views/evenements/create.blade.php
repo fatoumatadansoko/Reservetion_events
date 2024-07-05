@@ -14,6 +14,7 @@
     @endif
     <form action="{{ route('evenements.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <!-- Formulaire -->
         <div class="form-group">
             <label for="libelle">Libellé</label>
             <input type="text" class="form-control" id="libelle" name="libelle" value="{{ old('libelle') }}" required>
@@ -55,8 +56,7 @@
 </div>
 <style>
     body {
-    font-family: 'Lato', sans-serif;
-}
-
+        font-family: 'Lato', sans-serif;
+    }
 </style>
-{{-- @endsection --}}
+@endsection
