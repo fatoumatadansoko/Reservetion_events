@@ -139,17 +139,24 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
+
                         <th>Nom</th>
                         <th>Date de création</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($permissions as $permission)
                         <tr>
-                            <td>{{ $permission->id }}</td>
                             <td>{{ $permission->name }}</td>
                             <td>{{ $permission->created_at }}</td>
+                            <td>
+                                <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

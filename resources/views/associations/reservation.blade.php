@@ -13,7 +13,7 @@
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+
     @extends('layouts.sidebarAssociation')
     @section('content')
     <div class="container mt-5">
@@ -26,7 +26,6 @@
                     <th scope="col">Email</th>
                     <th scope="col">Évènement</th>
                     <th scope="col">Statut</th>
-                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody id="reservation-list">
@@ -37,33 +36,14 @@
                     <td><p style="border: 0.01rem solid #000; border-radius: 10rem; padding: 0.2rem 0.4rem; display: inline-block;">{{ $reservation->utilisateur->user->email }}</p></td>
                     <td>{{ $reservation->evenement->libelle }}</td>
                     <td>{{ $reservation->statut }}</td>
-                    <td>
-                        @if ($reservation->statut === 'declinée')
-                        <h5>Déjà décliné</h5>
-                        @else
-                        <form action="{{ route('reserverdecline') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="libelle" value="{{ $evenements->libelle }}">
-                            <input type="hidden" name="email" value="{{ $reservation->utilisateur->user->email }}">
-                            <input type="hidden" name="prenom" value="{{ $reservation->utilisateur->prenom }}">
-                            <input type="hidden" name="nom" value="{{ $reservation->utilisateur->user->nom }}">
-                            <input type="hidden" name="id" value="{{ $reservation->id }}">
-                            <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
-                            <input type="hidden" name="utilisateur_id" value="{{ $reservation->utilisateur_id }}">
-                            <button type="submit" class="btn btn-danger">Décliner</button>
-                        </form>
-                        @endif
-                    </td>
+
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <div class="btn-custom">
-        <button class="btn mt-3" id="download-pdf">Télécharger PDF</button>
-        </div>
     </div>
 
-   
+
     <style>
         hr {
             height: 0.1rem;

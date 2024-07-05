@@ -28,4 +28,8 @@ class PermissionController extends Controller
 
         return redirect()->route('users.index')->with('success', 'Permission créée avec succès.');
     }
+    public function destroy(Permission $permission){
+        $permission->delete();
+        return redirect()->back()->with('success', 'permission supprimé avec succès.');
+    }
 }
