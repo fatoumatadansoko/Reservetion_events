@@ -35,15 +35,7 @@
         </li>
     </ul>
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+    
 
     <!-- User registration form -->
     <div id="user-form" class="mb-4">
@@ -55,6 +47,7 @@
                 <div class="col-12 col-md-6 mb-3">
                     <x-input-label for="prenom" :value="__('Prénom')" />
                     <x-text-input id="prenom" type="text" name="prenom" :value="old('prenom')" class="form-control" required />
+                    <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
                 </div>
                 <div class="col-12 col-md-6 mb-3">
                     <x-input-label for="nom" :value="__('Nom')" />
@@ -72,6 +65,7 @@
                 <div class="col-12 col-md-6 mb-3">
                     <x-input-label for="adresse_utilisateur" :value="__('Adresse')" />
                     <x-text-input id="adresse_utilisateur" type="text" name="adresse_utilisateur" :value="old('adresse_utilisateur')" class="form-control" required />
+                    <x-input-error :messages="$errors->get('adresse_utilisateur')" class="mt-2" />
                 </div>
             </div>
 

@@ -11,6 +11,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -25,17 +27,6 @@
 @section('content')
     <div class="container">
         <h1>Liste des Utilisateurs</h1>
- <!-- Afficher les informations de l'événement -->
-<h1 class="text-center m-2">liste de l'evenement {{ $evenement->libelle}}</h1>
-
-
-<!-- Afficher la liste des réservations -->
-<h2>Liste des réservations</h2>
-<ul>
-
-
-
-</ul>
         <table class="table" style="font-size: 0.875rem; font-family: 'Open Sans';">
             <thead>
                 <tr>
@@ -135,61 +126,47 @@
                     </tr>
                 @endforeach
             </tbody>
+            {{-- @include('vendor.pagination.bootstrap-5') --}}
         </table>
+        <div class="container">
+            <h2>Liste des permissions</h2>
+            <a href="{{ route('permissions.create') }}" class="btn btn-primary mb-3">Ajouter une permission</a>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+
+                        <th>Nom</th>
+                        <th>Date de création</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($permissions as $permission)
+                        <tr>
+                            <td>{{ $permission->name }}</td>
+                            <td>{{ $permission->created_at }}</td>
+                            <td>
+                                <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
 
 
 
-
-{{-- <table class="table" style="font-size:0.875rem ; font-family: 'opens sans' ;">
-
-
-<!-- Afficher la liste des réservations -->
-<h2>Liste des réservations</h2>
-<ul>
-
-
-
-</ul>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-
-
-  <table class="table" style="font-size:0.875rem ; font-family: 'opens sans' ;">
-
-    <thead>
-
-
-
-    </thead>
-    <tbody>
-      <tr>
-        <td>Amadou</td>
-        <td>Barro</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; ">barro@gmail.com</p></td>
-        <td>70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-      <tr>
-        <td>Amadou</td>
-        <td>Barro</td>
-        <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; ">barro2024@gmail.com</p></td>
-        <td>70 000 00 00</td>
-        <td><i class="fa-solid fa-ellipsis"></i></td>
-      </tr>
-
-    </tbody>
-  </table> --}}
-
-
-    </tbody>
-  </table>
 
 
   <style>

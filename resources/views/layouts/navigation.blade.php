@@ -98,3 +98,9 @@
         </div>
     </div>
 </nav>
+<style>
+    body {
+    font-family: 'Lato', sans-serif;
+}
+
+</style>

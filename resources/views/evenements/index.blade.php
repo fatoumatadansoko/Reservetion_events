@@ -93,7 +93,7 @@
     <div class="d-flex justify-content-end mt-4">
         <a href="{{ route('liste') }}" class="voirplus">Voir plus</a>
     </div>
-  
+
     <!-- Carousel Partenaires -->
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -162,5 +162,11 @@
             </div>
         </form>
     </div>
+    <style>
+        body {
+        font-family: 'Lato', sans-serif;
+    }
+
+    </style>
 
 @endsection

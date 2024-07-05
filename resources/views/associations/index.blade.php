@@ -132,12 +132,7 @@
                         <a href="reservation_person/{{$evenement->id}}/reservations" class="btn " style="background-color: #0D4C9B"><i class="fa-solid fa-users-gear"  style="color: #fff"></i></a>
                     </td>
                 </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Modal pour modifier un événement -->
+                 <!-- Modal pour modifier un événement -->
     <div class="modal fade modal-lg" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -213,6 +208,12 @@
             </div>
         </div>
     </div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+   
 </div>
 
 <div>

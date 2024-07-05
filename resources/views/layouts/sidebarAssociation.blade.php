@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Association</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
     <script src="{{ asset('sidebar.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('dashboardAdmin.css') }}">
     <link rel="stylesheet" href="{{ asset('sidebar.css') }}">
@@ -25,7 +27,7 @@
     <body id="body-pd">
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+            <img src="{{ asset('storage/' . Auth::user()->photo) }}" class="rounded-circle" alt="Photo de profil" width="40" height="40">
         </header>
 
         <div class="l-navbar" id="nav-bar">
@@ -37,7 +39,7 @@
                     <div class="nav_list">
                         <a href="{{ route('dashboardAssociation') }}" class="nav_link active"> <i class='bx bx-home nav_icon'></i> <span
                                 class="nav_name">Tabeau de bord</span> </a>
-                        <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
+                        <a href="{{route('reservation')}}" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
                                 class="nav_name">Gestion reservation</span> </a>
                         <a href="{{route('associations.index')}}" class="nav_link"> <i class='bx bx-calendar-check nav_icon'></i> <span
                                 class="nav_name">Gestion evenements</span> </a>

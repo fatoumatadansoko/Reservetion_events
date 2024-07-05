@@ -4,12 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-
-
+use App\Models\Evenement;
 
 Route::get('/', [EvenementController::class, 'index'])->middleware('userSeul')->name('accueil');
 Route::resource('evenements', EvenementController::class)->only(['index', 'show'])->middleware('userSeul');
@@ -30,6 +30,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/users/{id}/edit', [UtilisateurController::class, 'editUser'])->middleware(['auth', 'verified'])->name('users.edit');
     Route::put('/users/{id}', [UtilisateurController::class, 'updateUser'])->middleware(['auth', 'verified'])->name('users.update');
     Route::delete('/users/{id}', [UtilisateurController::class, 'destroy'])->middleware(['auth', 'verified'])->name('users.delete');
+    Route::resource('permissions', PermissionController::class);
 });
 
 // Routes pour l'association
@@ -37,6 +38,9 @@ Route::middleware('admin')->group(function () {
 Route::middleware('association')->group(function () {
     Route::resource('associations', AssociationController::class)->middleware(['auth', 'verified']);
     Route::resource('evenements', EvenementController::class)->except(['index', 'show']);
+    Route::get('/api/reservations', [ReservationController::class, 'getReservations']);
+    Route::get('reservation', [EvenementController::class, 'reservation'])->name('reservation');
+
     //la route pour la liste des réservations
     Route::get('reservation_person/{evenement_id}/reservations', [ReservationController::class, 'liste_person_reserve_events']);
 
@@ -68,3 +72,6 @@ Route::resource('utilisateur', UtilisateurController::class)->middleware(['auth'
 
 Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->middleware(['auth', 'verified'])->name('reservations.approve');
 Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->middleware(['auth', 'verified'])->name('reservations.reject');
+
+
+
