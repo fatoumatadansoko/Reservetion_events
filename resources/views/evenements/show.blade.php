@@ -44,30 +44,36 @@
                 </div>
             </div>
         </div>
-
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
         <div class="All-info">
-            @if ($evenement && $evenement->reservations()->where('utilisateur_id', auth()->id())->where('statut', 'acceptée')->exists())
+            @if (auth()->check() && $evenement && $evenement->reservations()->where('utilisateur_id', auth()->user()->utilisateur->id )->where('statut', 'acceptée')->exists())
             <p class="resultat_validation" style="color:#0D4C9B">
                 Réservation :<br>
                 Confirmée:
                 <i class="fa-solid fa-circle-check" style="color:#0D4C9B"></i>
                 <i class="fa-solid fa-badge-check" style="background-color: #0D4C9B"></i>
             </p>
-            @elseif ($evenement && $evenement->reservations()->where('utilisateur_id', auth()->id())->where('statut', 'déclinée')->exists())
+            @elseif (auth()->check() && $evenement && $evenement->reservations()->where('utilisateur_id', auth()->user()->utilisateur->id )->where('statut', 'déclinée')->exists())
             <p class="resultat_validation" style="color:#0D4C9B">
                 Réservation :<br>
                 Annulée:
                 <i class="fa-solid fa-circle-xmark" style="color: #b20a0a;"></i>
-            @endif
-
+            @else
             <form id="reservation-form" action="{{ route('reserver') }}" method="POST">
                 @csrf
                 <input type="hidden" name="evenement_id" value="{{ $evenement->id }}">
                 @if(auth()->check())
-                <input type="hidden" name="utilisateur_id" value="{{ auth()->user()->id }}">
+                <input type="hidden" name="utilisateur_id" value="{{ auth()->user()->utilisateur->id }}">
                 @endif
                 <button type="submit" class="btn_reserve">Réserver</button>
             </form>
+            @endif
+
+
 
             <script>
                 document.getElementById('reservation-form').addEventListener('submit', function(event) {
