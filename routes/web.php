@@ -1,16 +1,60 @@
 <?php
 
-use App\Http\Controllers\EvenementController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Models\Evenement;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [EvenementController::class, 'index'])->middleware('userSeul')->name('accueil');
+Route::resource('evenements', EvenementController::class)->only(['index', 'show'])->middleware('userSeul');
+Route::get('liste', [EvenementController::class, 'liste'])->name('liste')->middleware('userSeul');
+Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
+
+require __DIR__ . '/auth.php';
+
+
+// Routes pour l'admin
+Route::middleware('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/liste_association_Admin', [AssociationController::class, 'liste_association'])->middleware(['auth', 'verified'])->name('liste.association');
+    Route::patch('/admin/associations/{id}/toggle-status', [AssociationController::class, 'toggleAssociationStatus'])->middleware(['auth', 'verified'])->name('toggle.association.status');
+    Route::get('liste.events', [EvenementController::class, 'listeEvents'])->middleware(['auth', 'verified'])->name('liste.events');
+    Route::get('/users', [UtilisateurController::class, 'index'])->middleware(['auth', 'verified'])->name('users.index');
+    Route::get('/users/{id}/edit', [UtilisateurController::class, 'editUser'])->middleware(['auth', 'verified'])->name('users.edit');
+    Route::put('/users/{id}', [UtilisateurController::class, 'updateUser'])->middleware(['auth', 'verified'])->name('users.update');
+    Route::delete('/users/{id}', [UtilisateurController::class, 'destroy'])->middleware(['auth', 'verified'])->name('users.delete');
+    Route::resource('permissions', PermissionController::class);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Routes pour l'association
+
+Route::middleware('association')->group(function () {
+    Route::resource('associations', AssociationController::class)->middleware(['auth', 'verified']);
+    Route::resource('evenements', EvenementController::class)->except(['index', 'show']);
+    Route::get('/api/reservations', [ReservationController::class, 'getReservations']);
+    Route::get('reservation', [EvenementController::class, 'reservation'])->name('reservation');
+
+    //la route pour la liste des réservations
+    Route::get('reservation_person/{evenement_id}/reservations', [ReservationController::class, 'liste_person_reserve_events']);
+
+    Route::post('/reserverdecline', [ReservationController::class, 'reserverdecline'])->name('reserverdecline');
+
+});
+Route::get('/detail_event/{id}',[AssociationController::class,'detail_event'])->name('detail_event');
+
+// Routes pour l'utilisateur
+Route::middleware('utilisateur')->group(function () {
+    Route::post('/reserver', [ReservationController::class, 'reserver'])->middleware(['auth', 'verified'])->name('reserver');
+    Route::put('updatePhoto', [UtilisateurController::class, 'updatePhoto'])->name('user.updatePhoto')->middleware(['auth', 'verified']);
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -18,12 +62,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-use App\Http\Controllers\Auth\RegisteredUserController;
-
-Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
-Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
-
-require __DIR__.'/auth.php';
 
 
-Route::resource('evenements', EvenementController::class); // Exclure l'index des idées pour éviter la redondance
+Route::resource('utilisateur', UtilisateurController::class)->middleware(['auth', 'verified']);
+
+
+
+
+
+Route::post('/reservations/{idee}/approve', [ReservationController::class, 'approve'])->middleware(['auth', 'verified'])->name('reservations.approve');
+Route::post('/reservations/{idee}/reject', [ReservationController::class, 'reject'])->middleware(['auth', 'verified'])->name('reservations.reject');
+
+
+

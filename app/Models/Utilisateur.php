@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Utilisateur extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
 
     protected $fillable = [
         'prenom',
@@ -18,5 +19,9 @@ class Utilisateur extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 }

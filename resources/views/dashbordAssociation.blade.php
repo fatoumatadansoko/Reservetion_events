@@ -1,17 +1,23 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in! association") }}
-                </div>
+@extends('layouts.sidebarAssociation')
+@section('content')
+   
+    <div class="row p-5">
+        <div class="col-1 titre">
+            <h4>Statistiques</h4>
+        </div>
+        <div class="col bg-light mt-5 p-5 d-flex flex-column align-items-center">
+            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                style="height: 150px; width:150px; background: #0d4c9b; color:aliceblue;">
+                1000
             </div>
+            <h6 class="mt-auto">Inscrits</h6>
+        </div>
+        <div class="col bg-light mt-5 p-5 d-flex flex-column align-items-center">
+            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                style="height: 150px; width:150px; background: #0d4c9b; color:aliceblue;">
+                1000
+            </div>
+            <h6 class="mt-auto">Évenements</h6>
         </div>
     </div>
-</x-app-layout>
+@endsection

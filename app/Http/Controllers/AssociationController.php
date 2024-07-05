@@ -2,22 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evenement;
 use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssociationController extends Controller
 {
-    public function dashboardAssociation(){
-        return view('dashbordAssociation');
+    public function dashboardAssociation()
+    {
+        $associations = Association::all();
+
+        return view('dashbordAssociation', compact('associations'));
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $association = $user->association;
+
+        if (!$association) {
+            abort(401);
+        }
+
+        $evenements = Evenement::where('association_id', $association->id)->get();
+
+        return view('associations.index', compact('evenements', 'association'));
+    }
+    public function liste_association()
+    {
+        $associations = Association::all();
+        return view('admin.list_association', compact('associations'));
+    }
+    // Controller
+
+
+    public function toggleAssociationStatus($id)
+    {
+        $association = Association::find($id);
+        $association->is_active = !$association->is_active;
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le statut de l\'association a été mis à jour.');
     }
 
+    public function detail_event($id){
+        $evenement = Evenement::findOrFail($id);
+
+        return view ('associations.detail_event',compact('evenement'));
+    }
+
+   
     /**
      * Show the form for creating a new resource.
      */

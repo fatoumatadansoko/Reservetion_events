@@ -32,6 +32,7 @@ class AuthenticatedSessionController extends Controller
         $user = $request->user();
 
         // Redirection en fonction du rôle de l'utilisateur
+
         if ($user->hasRole('admin')) {
             return redirect()->intended(route('dashboard', [], false));
         }
@@ -39,7 +40,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('dashboardAssociation', [], false));
         }
          else {
-            return redirect()->intended(route('index', [], false));
+            return redirect()->intended(route('evenements.index', [], false));
         }
     }
 

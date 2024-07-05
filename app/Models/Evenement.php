@@ -23,4 +23,9 @@ class Evenement extends Model
         return $this->belongsTo(Association::class);
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class,'evenement_id');
+    }
+
 }
