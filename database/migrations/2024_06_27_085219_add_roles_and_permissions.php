@@ -20,10 +20,10 @@ return new class extends Migration
         $userRole = Role::create(['name' => 'user']);
 
         // Création des permissions
-        $createEventPermission = Permission::create(['name' => 'create events']);
-        $editEventPermission = Permission::create(['name' => 'edit events']);
-        $deleteEventPermission = Permission::create(['name' => 'delete events']);
-        $viewEventPermission = Permission::create(['name' => 'view events']);
+        $createEventPermission = Permission::create(['name' => 'create evenement']);
+        $editEventPermission = Permission::create(['name' => 'edit evenement']);
+        $deleteEventPermission = Permission::create(['name' => 'delete evenement']);
+        $viewEventPermission = Permission::create(['name' => 'view evenement']);
 
         // Assignation des permissions aux rôles
         $adminRole->givePermissionTo([$createEventPermission, $editEventPermission, $deleteEventPermission, $viewEventPermission]);
@@ -37,10 +37,10 @@ return new class extends Migration
     public function down(): void
     {
           // Suppression des permissions
-          Permission::where('name', 'create events')->delete();
-          Permission::where('name', 'edit events')->delete();
-          Permission::where('name', 'delete events')->delete();
-          Permission::where('name', 'view events')->delete();
+          Permission::where('name', 'create evenement')->delete();
+          Permission::where('name', 'edit evenement')->delete();
+          Permission::where('name', 'delete evenement')->delete();
+          Permission::where('name', 'view evenement')->delete();
 
           // Suppression des rôles
           Role::where('name', 'admin')->delete();
