@@ -19,7 +19,7 @@ class SetupAdmin extends Command
         // Créer un nouvel utilisateur administrateur
         $adminUser = User::create([
             'nom' => 'Admin User',
-            'telephone' => '773162001',
+            'telephone' => '770000000',
             'photo' => 'photos/admin.jpg',
             'email' => 'admin@gmail.com', // Changez l'email si nécessaire
             'password' => bcrypt('123456789'), // Changez le mot de passe si nécessaire

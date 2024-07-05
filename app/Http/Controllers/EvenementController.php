@@ -44,7 +44,7 @@ class EvenementController extends Controller
             'date_evenement.after_or_equal' => 'La date de l\'événement doit être égale ou postérieure à la date actuelle.',
             'date_limite_inscription.after_or_equal' => 'La date limite d\'inscription doit être égale ou postérieure à la date actuelle.'
         ]);
-        
+
         $photo = null;
 
         // Vérifier si un fichier photo est uploadé
@@ -88,10 +88,10 @@ class EvenementController extends Controller
 
         // Calculer le nombre de réservations acceptées
         $reservationsAcceptees = $evenement->reservations()->where('statut', 'acceptée')->count();
-    
+
         // Calculer le nombre de places disponibles
         $placesDisponibles = $evenement->nombre_place - $reservationsAcceptees;
-    
+
         return view('evenements.show', compact('evenement', 'placesDisponibles'));
 
 }
@@ -131,13 +131,13 @@ class EvenementController extends Controller
     }
     public function liste()
     {
-        $evenements = Evenement::all();
+        $evenements = Evenement::paginate(9);
         return view('evenements.liste', compact('evenements'));
     }
 
     public function listeEvents()
     {
-        $evenements = Evenement::all();
+        $evenements = Evenement::paginate(10);
         return view('associations/liste_event', compact('evenements'));
     }
     public function reservation()

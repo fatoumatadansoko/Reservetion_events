@@ -14,7 +14,7 @@
   </body>
 @extends('layouts.sidebarAdmin')
 @section('content')
-    
+
 
   <table class="table" style="font-size:0.875rem ; font-family: 'opens sans' ;">
 
@@ -31,7 +31,7 @@
     <tbody>
         @foreach ($evenements as $evenement)
       <tr>
-      
+
         <td>{{ $evenement->libelle }}</td>
         <td>{{ $evenement->description }}</td>
         <td> <p style="border: 0.01rem solid #000; border-radius: 10rem ; padding: 0.2rem 0.4rem;display: inline-block; "> {{ $evenement->date_evenement }}</p></td>
@@ -42,10 +42,10 @@
     </tbody>
   </table>
 
-
+<div>
+    {{$evenements->links()}}
+</div>
   <style>
-
-
  hr {
             height: 0.1rem;
             width: 100%;

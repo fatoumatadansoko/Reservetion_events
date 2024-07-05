@@ -23,7 +23,7 @@ class UtilisateurController extends Controller
     public function index()
     {
 
-        $users = Utilisateur::all(); // Récupère tous les utilisateurs
+        $users = Utilisateur::paginate(1); // Récupère tous les utilisateurs
         $permissions = Permission::all(); // Récupère toutes les permissions
         return view('associations.liste_utilisateur', compact('users', 'permissions'));
     }

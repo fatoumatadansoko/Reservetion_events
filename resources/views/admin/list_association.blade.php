@@ -65,6 +65,9 @@
     </tbody>
 </table>
 
+<div>
+    {{$associations->links()}}
+</div>
   <style>
  hr {
             height: 0.1rem;

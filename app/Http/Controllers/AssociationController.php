@@ -27,13 +27,14 @@ class AssociationController extends Controller
             abort(401);
         }
 
-        $evenements = Evenement::where('association_id', $association->id)->get();
+       // $evenements = Evenement::where('association_id', $association->id)->get();
+        $evenements = Evenement::where('association_id', $association->id)->paginate(10);
 
         return view('associations.index', compact('evenements', 'association'));
     }
     public function liste_association()
     {
-        $associations = Association::all();
+        $associations = Association::paginate(10);
         return view('admin.list_association', compact('associations'));
     }
     // Controller
@@ -54,7 +55,7 @@ class AssociationController extends Controller
         return view ('associations.detail_event',compact('evenement'));
     }
 
-   
+
     /**
      * Show the form for creating a new resource.
      */
