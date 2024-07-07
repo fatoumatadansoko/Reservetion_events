@@ -92,10 +92,7 @@ class EvenementController extends Controller
 
         // Calculer le nombre de places disponibles
         $placesDisponibles = $evenement->nombre_place - $reservationsAcceptees;
-<<<<<<< HEAD
 
-=======
->>>>>>> feature/review
         return view('evenements.show', compact('evenement', 'placesDisponibles'));
 
 }
