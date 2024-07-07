@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreEvenementRequest;
 use App\Models\Utilisateur;
 
+
 class EvenementController extends Controller
 {
+
     public function index()
     {
         $associations = Association::all();
@@ -75,7 +77,6 @@ class EvenementController extends Controller
 
     public function show($id)
     {
-
         $evenement = Evenement::findOrFail($id);
         $reserveé = null;
 
@@ -91,7 +92,10 @@ class EvenementController extends Controller
 
         // Calculer le nombre de places disponibles
         $placesDisponibles = $evenement->nombre_place - $reservationsAcceptees;
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/review
         return view('evenements.show', compact('evenement', 'placesDisponibles'));
 
 }

@@ -13,10 +13,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Reservation_approbation;
+use Spatie\Permission\Models\Permission;
 
 
 class ReservationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:view evenement')->only('show');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -53,6 +58,7 @@ class ReservationController extends Controller
      */
     public function show($id)
     {
+       
         $evenement = Evenement::findOrFail($id);
         return view('evenements.detail', compact('evenement'));
     }
@@ -86,12 +92,17 @@ class ReservationController extends Controller
             return redirect()->route('login')->with('error', 'Vous devez être connecté pour effectuer une réservation.');
         }
 
+<<<<<<< HEAD
         $validated = $request->validate([
             'evenement_id' => 'required|exists:evenements,id',
             'utilisateur_id' => 'required|exists:users,id',
         ]);
 
         $reservation = Reservation::create($validated);
+=======
+
+        $reservation = Reservation::create($request->all());
+>>>>>>> feature/review
         $reservation->statut = 'acceptée';
         $reservation->save();
 
