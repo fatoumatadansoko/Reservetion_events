@@ -31,42 +31,51 @@
                 <img src="{{ asset('images/logo.png ') }}" alt="">
             </div>
         </header>
-
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
-                <div> <a href="{{route('dashboard')}}" class="nav_logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+                <div>
+                    <a href="{{ route('dashboard') }}" class="nav_logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
                     <div class="nav_list">
+                        <a href="{{ route('dashboard') }}" class="nav_link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <i class='bx bx-home nav_icon'></i>
+                            <span class="nav_name">Tableau de bord</span>
+                        </a>
 
-                    </div>
-                    <div class="nav_list">
-                        <a href="{{ route('dashboard') }}" class="nav_link active"> <i class='bx bx-home nav_icon'></i> <span
-                                class="nav_name">Tabeau de bord</span> </a>
+                        <a href="{{ route('users.index') }}" class="nav_link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                            <i class='bx bx-group nav_icon'></i>
+                            <span class="nav_name">Gestion utilisateur</span>
+                        </a>
 
-                        <a href="{{ route('users.index') }}" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span
-                                class="nav_name">Gestion utilisateur</span> </a>
-                        <a href="{{ route('liste.association') }}" class="nav_link"> <i class='bx bxs-business nav_icon'></i> <span
-                                class="nav_name">Gestion association</span> </a>
-                        <a href="{{ route('liste.events') }}" class="nav_link"> <i class='bx bx-calendar-check nav_icon'></i> <span
-                                class="nav_name">Liste evenements</span> </a>
-                        <a href="#" class="nav_link"><i class='bx bx-cog nav_icon'></i> <span
-                                class="nav_name">Parametre</span> </a>
+                        <a href="{{ route('liste.association') }}" class="nav_link {{ request()->routeIs('liste.association') ? 'active' : '' }}">
+                            <i class='bx bxs-business nav_icon'></i>
+                            <span class="nav_name">Gestion association</span>
+                        </a>
+
+                        <a href="{{ route('liste.events') }}" class="nav_link {{ request()->routeIs('liste.events') ? 'active' : '' }}">
+                            <i class='bx bx-calendar-check nav_icon'></i>
+                            <span class="nav_name">Liste événements</span>
+                        </a>
+
+                        <a href="{{ route('permissions') }}" class="nav_link {{ request()->routeIs('permissions') ? 'active' : '' }}">
+                            <i class='bx bx-cog nav_icon'></i>
+                            <span class="nav_name">Permissions</span>
+                        </a>
                     </div>
                 </div>
-                <a href="#" class="nav_link">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
 
-                    <x-responsive-nav-link :href="route('logout')" class="nav_link"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                                        <i class='bx bx-log-out nav_icon'></i>
-                                        <span
-                                        class="nav_name"> {{ __('Deconnexion') }}</span>
-                    </x-responsive-nav-link>
-                </form>
-                 </a>
+                <a href="#" class="nav_link">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('logout')" class="nav_link"
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                            <i class='bx bx-log-out nav_icon'></i>
+                            <span class="nav_name"> {{ __('Déconnexion') }}</span>
+                        </x-responsive-nav-link>
+                    </form>
+                </a>
             </nav>
         </div>
+
         <!--Container Main start-->
         <div class="height-100 bg-light p-5">
             <h4 class="p-5"></h4>

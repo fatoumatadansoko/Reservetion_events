@@ -47,11 +47,7 @@
                         <td>{{ $user->user->email }}</td>
                         <td>{{ $user->user->telephone }}</td>
                         <td>
-                            <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                            </form>
+
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#editUserModal{{ $user->id }}">
                                 Éditer
@@ -130,7 +126,7 @@
         </table>
         <div class="container">
             <h2>Liste des permissions</h2>
-            <a href="{{ route('permissions.create') }}" class="btn btn-primary mb-3">Ajouter une permission</a>
+            <a href="{{ route('permissions.create') }}" class="btn btn-primary mb-3" style="background: #0d4c9b; color: white;">Ajouter une permission</a>
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}

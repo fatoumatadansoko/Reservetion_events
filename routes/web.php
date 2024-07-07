@@ -9,10 +9,10 @@ use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Models\Evenement;
+
 
 Route::get('/', [EvenementController::class, 'index'])->middleware('userSeul')->name('accueil');
-Route::resource('evenements', EvenementController::class)->only(['index', 'show'])->middleware('userSeul');
+Route::resource('evenements', EvenementController::class)->only(['index', 'show'])->middleware('can:view evenement')->middleware('userSeul');
 Route::get('liste', [EvenementController::class, 'liste'])->name('liste')->middleware('userSeul');
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'registerUser'])->name('registerUser');
@@ -31,6 +31,9 @@ Route::middleware('admin')->group(function () {
     Route::put('/users/{id}', [UtilisateurController::class, 'updateUser'])->middleware(['auth', 'verified'])->name('users.update');
     Route::delete('/users/{id}', [UtilisateurController::class, 'destroy'])->middleware(['auth', 'verified'])->name('users.delete');
     Route::resource('permissions', PermissionController::class);
+    Route::get('/permission', [PermissionController::class, 'indexA'])->name('permissions');
+    Route::post('/permissions/assign', [PermissionController::class, 'assign'])->name('permissions.assign');
+    Route::post('/permissions/revoke', [PermissionController::class, 'revoke'])->name('permissions.revoke');
 });
 
 // Routes pour l'association
@@ -75,3 +78,7 @@ Route::post('/reservations/{idee}/reject', [ReservationController::class, 'rejec
 
 
 
+
+Route::middleware(['auth'])->group(function () {
+
+});
