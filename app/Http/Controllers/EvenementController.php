@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreEvenementRequest;
 use App\Models\Utilisateur;
 
+
 class EvenementController extends Controller
 {
+
     public function index()
     {
         $associations = Association::all();
@@ -75,7 +77,6 @@ class EvenementController extends Controller
 
     public function show($id)
     {
-
         $evenement = Evenement::findOrFail($id);
         $reserveé = null;
 
